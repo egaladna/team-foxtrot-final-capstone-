@@ -9,7 +9,8 @@ Vue.use(Vuex)
  * the page is refreshed. When that happens you need to check for the token in local storage and if it
  * exists you should set the header so that it will be attached to each request
  */
-const currentToken = localStorage.getItem('token')
+// const currentToken = localStorage.getItem('token')
+const currentToken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MTE0NjcwNX0.YI6W2iC74NS1a9yZBLdPGFWJA1Sf5eZ8KNXvW0luhws5n2387gx1nwhl8A-nA3-ELnqjEAWlCk17Z1iVg7fAKA'
 const currentUser = JSON.parse(localStorage.getItem('user'));
 
 if(currentToken != null) {
