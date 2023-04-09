@@ -1,6 +1,7 @@
 BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS  clothes_outfits, outfits,clothes_categories, clothes, users, categories;
+DROP SEQUENCE IF EXISTS seq_item_id, seq_category_id, seq_outfit_id; 
 
 CREATE TABLE users (
 	user_id SERIAL,
@@ -26,8 +27,12 @@ CREATE TABLE clothes (
 	
 );
 
+CREATE SEQUENCE seq_category_id 
+INCREMENT by 1 
+START WITH 6001 NO MAXVALUE;
+
 CREATE TABLE categories (
-	category_id SERIAL PRIMARY KEY,
+	category_id int PRIMARY KEY DEFAULT nextval('seq_category_id') NOT NULL,
 	category_name varchar(50)
 );
 
