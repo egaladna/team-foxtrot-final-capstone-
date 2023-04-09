@@ -7,12 +7,12 @@
 <script>
 
 export default {
+
     name: 'clothing-item',
     props: ['cloth']
 }
 </script>
 
 <style>
-
 
 </style>
