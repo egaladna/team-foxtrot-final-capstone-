@@ -10,8 +10,13 @@ CREATE TABLE users (
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
+CREATE SEQUENCE seq_item_id 
+INCREMENT by 1 
+START WITH 2001 
+NO MAXVALUE;
+
 CREATE TABLE clothes (
-	item_id SERIAL,
+	item_id int DEFAULT nextval('seq_item_id') NOT NULL,
 	type varchar(50) NOT NULL,
 	img_url varchar(500) NOT NULL,
 	user_id int,
@@ -33,8 +38,14 @@ CREATE TABLE clothes_categories (
 	CONSTRAINT FK_clothes_categories_item_id FOREIGN KEY (item_id) REFERENCES clothes(item_id),
 	CONSTRAINT FK_clothes_categories_category_id FOREIGN KEY (category_id) REFERENCES categories(category_id)
 	);
+	
+CREATE SEQUENCE seq_outfit_id 
+INCREMENT by 1 
+START WITH 4001 
+NO MAXVALUE;
+
 CREATE TABLE outfits (
-	outfit_id SERIAL PRIMARY KEY,
+	outfit_id int PRIMARY KEY DEFAULT nextval('seq_outfit_id') NOT NULL,
 	user_id int,
 	CONSTRAINT FK_outfits_user_id FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
