@@ -13,14 +13,15 @@ Vue.use(Vuex)
 const currentToken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MTIxOTk4OX0.8vdVMR3MvtxC0OUiZs7ukYZCde4t5lbc9Y0BGG5xPgjQa8EibSrX_sRuyuofMJizyaCJ0S9u1j0ETC8YMttPAA'
 const currentUser = JSON.parse(localStorage.getItem('user'));
 
-if(currentToken != null) {
+if (currentToken != null) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${currentToken}`;
 }
 
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    selectedItems: [],
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -30,7 +31,7 @@ export default new Vuex.Store({
     },
     SET_USER(state, user) {
       state.user = user;
-      localStorage.setItem('user',JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(user));
     },
     LOGOUT(state) {
       localStorage.removeItem('token');
@@ -38,6 +39,20 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
-    }
+    },
+    SELECT_ITEM(state, cloth) {
+      state.selectedItems = state.selectedItems.filter((item) => {
+        return item.type != cloth.type;
+      });
+      state.selectedItems.unshift(cloth);
+    },
+    DESELECT_ITEM(state, cloth) {
+      const blankSelection = {type: cloth.type};
+      this.commit('SELECT_ITEM', blankSelection);
+
+      //state.selectedItems = state.selectedItems.filter( (item) => {
+        //return item.id != cloth.id;
+      //});
+    },
   }
 })

@@ -7,13 +7,10 @@
 
 <script>
 export default {
-    props: [
-        "item", 
-        "type",
-        ],
+    props: ["type"],
     computed: {
         selectedForType() {
-            return this.item.find(cloth => {
+            return this.$store.state.selectedItems.find(cloth => {
                 return this.type === cloth.type;
             });
         }

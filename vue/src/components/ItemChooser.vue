@@ -1,10 +1,11 @@
 <template>
-  <div id = "main">
+  <div id="main">
     <div id="clothing-items" v-for="type in types" v-bind:key="type.id">
-        <SelectedItems v-bind:type="type" v-bind:item="selectedItem"/>
-      <p id = "type" >Choose your {{ type }}:</p>
-      <div id = "image-container">
-          <img v-on:click="filterForItem(cloth)" v-for="cloth in filterByType(type)" v-bind:key="cloth.id" v-bind:src="cloth.imgUrl"/>
+      <SelectedItems v-bind:type="type"/>
+      <p id="type">Choose your {{ type }}:</p>
+      <div id="image-container">
+        <img v-on:click="makeSelection(cloth)" v-for="cloth in filterByType(type)" v-bind:key="cloth.id" v-bind:src="cloth.imgUrl"
+        />
       </div>
     </div>
   </div>
@@ -12,17 +13,17 @@
 
 <script>
 import ClosetService from "@/services/ClosetService";
-import SelectedItems from '@/components/SelectedItems';
+import SelectedItems from "@/components/SelectedItems";
 export default {
   data() {
     return {
       types: [],
       clothing: [],
-      selectedItem:[]
+      selectedItem: [],
     };
   },
   components: {
-      SelectedItems
+    SelectedItems,
   },
   methods: {
     getClothesList() {
@@ -40,12 +41,35 @@ export default {
       });
     },
     filterForItem(cloth) {
-        this.selectedItem = this.selectedItem.filter( (item) => {
-            return item.type != cloth.type;
+      if (this.selectedItem.includes(cloth)) {
+        this.selectedItem = this.selectedItem.filter((item) => {
+          return item.id != cloth.id;
         });
-        this.selectedItem.unshift(this.clothing.find((item) => {
+      } else {
+        this.selectedItem = this.selectedItem.filter((item) => {
+          return item.type != cloth.type;
+        });
+        this.selectedItem.unshift(
+          this.clothing.find((item) => {
             return item.id === cloth.id;
-        }));
+          })
+        );
+      }
+    },
+    makeSelection(cloth) {
+      if (this.$store.state.selectedItems.includes(cloth)) {
+        this.$store.commit("DESELECT_ITEM", cloth);
+      } else {
+        this.$store.commit("SELECT_ITEM", cloth);
+      }
+    },
+    isTypeSelection(type) {
+        this.$store.state.selectedItems.forEach( item => {
+            if(item.type === type) {
+                return true;
+            } 
+        });
+        return false;
     }
   },
   created() {
@@ -60,22 +84,21 @@ export default {
 </script>
 
 <style scoped>
-#main, 
+#main,
 #image-container,
 #clothing-items {
-    display: flex;
-} 
+  display: flex;
+}
 #main {
-    flex-direction: column;
+  flex-direction: column;
 }
 #type {
-    
 }
 #image-container {
-    flex-direction: row;
+  flex-direction: row;
 }
 #clothing-items {
-    flex-direction: column;
+  flex-direction: column;
 }
 div img {
   height: auto;
