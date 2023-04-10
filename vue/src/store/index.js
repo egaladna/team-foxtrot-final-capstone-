@@ -49,10 +49,6 @@ export default new Vuex.Store({
     DESELECT_ITEM(state, cloth) {
       const blankSelection = {type: cloth.type};
       this.commit('SELECT_ITEM', blankSelection);
-
-      //state.selectedItems = state.selectedItems.filter( (item) => {
-        //return item.id != cloth.id;
-      //});
     },
   }
 })

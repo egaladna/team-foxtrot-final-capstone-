@@ -11,6 +11,11 @@ INSERT INTO clothes (type, img_url, user_id) VALUES ('BOTTOM', 'https://images.e
 INSERT INTO clothes (type, img_url, user_id) VALUES ('FULL BODY', 'https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/61kmUxj0PFL._UX569_.jpg', 1);
 INSERT INTO clothes (type, img_url, user_id) VALUES ('FOOTWEAR', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6Fa0oBMWIUf2G_qSWW7tetQf8WHnMgWQhww&usqp=CAU', 1);
 
+INSERT INTO outfits (user_id) VALUES (1) RETURNING outfit_id;
+INSERT INTO clothes_outfits (outfit_id, item_id) VALUES (4001, 2001);
+INSERT INTO clothes_outfits (outfit_id, item_id) VALUES (4001, 2002);
+INSERT INTO clothes_outfits (outfit_id, item_id) VALUES (4001, 2004);
+
 INSERT INTO categories (category_name) VALUES ('BUSINESS'), ('PARTY'), ('FITNESS'), ('CASUAL'), ('LOUNGE'), ('FORMAL');
 
 
