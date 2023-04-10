@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id = "clothing-items">
     <div v-for="cloth in displayedClothes" v-bind:key="cloth.id">
       <ClothingItem v-bind:cloth="cloth" />
       <button v-on:click.prevent="deleteClothingItem(cloth.id)">Delete</button>
@@ -56,5 +56,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+#clothing-items {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
 </style>

@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS  clothes_outfits, outfits,clothes_categories, clothes, users, categories;
+DROP TABLE IF EXISTS  item_type, clothes_outfits, outfits, clothes_categories, clothes, users, categories;
 DROP SEQUENCE IF EXISTS seq_item_id, seq_category_id, seq_outfit_id; 
 
 CREATE TABLE users (
@@ -9,6 +9,10 @@ CREATE TABLE users (
 	password_hash varchar(200) NOT NULL,
 	role varchar(50) NOT NULL,
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
+);
+
+CREATE TABLE item_type (
+	type varchar(50) PRIMARY KEY
 );
 
 CREATE SEQUENCE seq_item_id 
@@ -23,7 +27,7 @@ CREATE TABLE clothes (
 	user_id int,
 	CONSTRAINT PK_clothes PRIMARY KEY (item_id),
 	CONSTRAINT FK_clothes_user_id FOREIGN KEY(user_id) REFERENCES users(user_id),
-	CONSTRAINT chk_clothes_type CHECK (type in ('TOP','BOTTOM', 'ACCESSORIES', 'FOOTWEAR', 'FULL BODY', 'OUTERWEAR'))
+	CONSTRAINT FK_clothes_type FOREIGN KEY (type) REFERENCES item_type(type) 
 	
 );
 

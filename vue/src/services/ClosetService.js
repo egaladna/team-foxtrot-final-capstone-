@@ -7,5 +7,9 @@ export default {
 
     deleteClothingItem(itemId) {
         return axios.delete(`/closet/${itemId}`);
-    } 
+    },
+
+    getTypes() {
+        return axios.get('/types');
+    }
 }

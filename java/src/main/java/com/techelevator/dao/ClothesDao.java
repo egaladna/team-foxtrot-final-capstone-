@@ -9,5 +9,5 @@ public interface ClothesDao {
     List<ClothingItem> getClothesForUser(int userId);
     ClothingItem getClothingItemById(int itemId);
     void deleteClothingItem(int itemId);
-
+    List<String> listTypes();
 }

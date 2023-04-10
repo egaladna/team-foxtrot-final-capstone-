@@ -13,6 +13,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
+div img {
+  height: auto;
+  width: 100px;
+}
 </style>

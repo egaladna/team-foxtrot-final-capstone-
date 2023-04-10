@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcClothesDaoTests extends BaseDaoTests{
@@ -46,5 +47,16 @@ public class JdbcClothesDaoTests extends BaseDaoTests{
         Assert.assertFalse(sut.getClothesForUser(1).contains(TEST_ITEM_1));
     }
 
+    @Test
+    public void listTypes_returns_correct_list_types() {
+        List<String> types = new ArrayList<>();
+        types.add("TOP");
+        types.add("BOTTOM");
+        types.add("FULL BODY");
+        types.add("FOOTWEAR");
+        types.add("ACCESSORIES");
+        types.add("OUTERWEAR");
+        Assert.assertEquals(types, sut.listTypes());
+    }
 
 }

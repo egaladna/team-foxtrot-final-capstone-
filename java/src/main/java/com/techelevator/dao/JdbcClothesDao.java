@@ -54,6 +54,15 @@ public class JdbcClothesDao implements ClothesDao{
         jdbcTemplate.update(sql, itemId);
     }
 
+    @Override
+    public List<String> listTypes() {
+        List<String> types = new ArrayList<>();
+        SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT type FROM item_type");
+        while(results.next()) {
+            types.add(results.getString("type"));
+        }
+        return types;
+    }
 
     private ClothingItem mapRowToClothingItem(SqlRowSet row) {
         ClothingItem cloth = new ClothingItem();
