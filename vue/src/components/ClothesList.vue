@@ -63,4 +63,8 @@ export default {
   flex-wrap: wrap;
 }
 
+template {
+  background: BE6E46;
+}
+
 </style>
