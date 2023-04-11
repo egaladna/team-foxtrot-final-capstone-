@@ -49,6 +49,7 @@ public class JdbcClothesDao implements ClothesDao{
 
     @Override
     public void deleteClothingItem(int itemId) {
+        jdbcTemplate.update("DELETE FROM clothes_outfits where item_id = ?", itemId);
         String sql = "DELETE FROM clothes " +
                 "WHERE item_id = ?;";
         jdbcTemplate.update(sql, itemId);

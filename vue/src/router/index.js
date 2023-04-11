@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import Closet from '../views/Closet.vue'
 import Selection from '../views/Selection.vue'
+import Outfits from '../views/Outfits.vue'
 Vue.use(Router)
 
 /**
@@ -66,6 +67,14 @@ const router = new Router({
       path: '/chooseoutfit',
       name: 'selection',
       component: Selection,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/myoutfits',
+      name: 'outfits',
+      component: Outfits,
       meta: {
         requiresAuth: false
       }

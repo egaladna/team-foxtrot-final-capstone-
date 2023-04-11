@@ -1,7 +1,6 @@
 <template>
   <div id="main">
     <div id="clothing-items" v-for="type in types" v-bind:key="type.id">
-      <SelectedItems v-bind:type="type"/>
       <p id="type">Choose your {{ type }}:</p>
       <div id="image-container">
         <img v-on:click="makeSelection(cloth)" v-for="cloth in filterByType(type)" v-bind:key="cloth.id" v-bind:src="cloth.imgUrl"
@@ -13,7 +12,6 @@
 
 <script>
 import ClosetService from "@/services/ClosetService";
-import SelectedItems from "@/components/SelectedItems";
 export default {
   data() {
     return {
@@ -22,9 +20,7 @@ export default {
       selectedItem: [],
     };
   },
-  components: {
-    SelectedItems,
-  },
+ 
   methods: {
     getClothesList() {
       ClosetService.getClothingList()
@@ -89,6 +85,7 @@ export default {
 #clothing-items {
   display: flex;
 }
+
 #main {
   flex-direction: column;
 }

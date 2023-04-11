@@ -1,11 +1,14 @@
-<template>  
+<template> 
+<div id="closet">
+  <h1>My Closet</h1>
   <div id = "clothing-items">
-      <h1>My Closet</h1>
     <div v-for="cloth in displayedClothes" v-bind:key="cloth.id">
       <ClothingItem v-bind:cloth="cloth" />
       <button v-on:click.prevent="deleteClothingItem(cloth.id)">Delete</button>
     </div>
   </div>
+
+</div>
 </template>
 
 <script>
@@ -63,5 +66,8 @@ export default {
   flex-wrap: wrap;
   justify-content: space-around;
 }
-
+#closet {
+  display: flex;
+  flex-direction: column;
+}
 </style>

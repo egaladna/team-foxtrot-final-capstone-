@@ -1,5 +1,6 @@
 package com.techelevator.model;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Outfit {
@@ -15,6 +16,15 @@ public class Outfit {
 
     private int outfitId;
     private int userId;
+    private List<ClothingItem> itemList;
+
+    public List<ClothingItem> getItemList() {
+        return itemList;
+    }
+
+    public void setItemList(List<ClothingItem> itemList) {
+        this.itemList = itemList;
+    }
 
     public int getOutfitId() {
         return outfitId;
