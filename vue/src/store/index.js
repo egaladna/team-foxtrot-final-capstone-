@@ -44,7 +44,7 @@ export default new Vuex.Store({
       state.selectedItems = state.selectedItems.filter((item) => {
         return item.type != cloth.type;
       });
-      state.selectedItems.unshift(cloth);
+      state.selectedItems.push(cloth);
     },
     DESELECT_ITEM(state, cloth) {
       const blankSelection = {type: cloth.type};

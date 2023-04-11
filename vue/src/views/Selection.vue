@@ -1,7 +1,13 @@
 <template>
-  <div>
-      <ItemChooser />
-      <SelectedItems />
+  <div id="main">
+      <div id="item-chooser">
+           <ItemChooser />
+      </div>
+     
+      <div id="selected-items">
+          <SelectedItems />
+      </div>
+      
   </div>
 </template>
 
@@ -18,8 +24,13 @@ export default {
 </script>
 
 <style>
-div {
+#main{
     display: flex;
+    justify-content: space-evenly;
 }
+#selected-items{
+  
+}
+
 
 </style>
