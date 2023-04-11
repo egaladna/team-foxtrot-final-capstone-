@@ -28,9 +28,7 @@ export default {
     display: flex;
     justify-content: space-evenly;
 }
-#selected-items{
-  
-}
+
 
 
 </style>
