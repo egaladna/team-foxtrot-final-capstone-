@@ -41,5 +41,8 @@ export default {
     display: flex;
     flex-direction: column;
 }
+img {
+  margin: 3px;
+}
 
 </style>

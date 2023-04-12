@@ -1,26 +1,28 @@
 <template>
   <div>
       <p>Selected Items</p>
-       <img class="selectedImages" v-for="item in validItems" v-bind:key="item.id" v-bind:src="item.imgUrl"> 
+      <div class="selectedItemsDiv" v-for="type in types" :key="type.id">
+        <SelectedItem :type="type"/>
+        </div>
       <button v-on:click.prevent="saveOutfits">Save Outfit</button> 
   </div>
 </template>
 
 <script>
 import OutfitService from '../services/OutfitService'
+import ClosetService from '../services/ClosetService'
+import SelectedItem from '../components/SelectedItem.vue'
 export default {
-    props: ["type"],
-    computed: {
-        validItems() {
-            return this.$store.state.selectedItems.filter(item => {
-                return item.imgUrl;
-            });
-        },
-        selectedForType() {
-            return this.$store.state.selectedItems.find(cloth => {
-                return this.type === cloth.type;
-            });
+    components: {
+        SelectedItem
+    },
+    data() {
+        return {
+        types: []
         }
+    },
+    computed: {
+
     },
     methods: {
         saveOutfits(){
@@ -29,20 +31,26 @@ export default {
             }); 
             OutfitService.addOutfit(cleanedUpList);
         }
+    },
+    created() {
+        ClosetService.getTypes().then(response => {
+            this.types = response.data;
+        }).catch(err => console.error(err));
     }
 }
 </script>
-
 <style>
 #main{
     display: flex;
-
-
 }
 .selectedImages {
     display: flex;
+    flex-direction: column;
     height: auto;
     width: 100px;
 }
 
+.selectedItemsDiv {
+   border: 0;
+}
 </style>

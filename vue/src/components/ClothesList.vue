@@ -36,6 +36,15 @@ export default {
           console.error(err);
         });
     },
+    // confirm(){
+    //  let userPreference;
+    //  if(confirm("Do you want to delete?") == true) {
+    //    userPreference = "Item Deleted";
+
+    //  } else {
+    //    userPreference = "Cancelled";
+    //  }
+    // },
 
     deleteClothingItem(itemId) {
       ClosetService.deleteClothingItem(itemId).then((response) => {

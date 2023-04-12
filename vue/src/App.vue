@@ -1,10 +1,15 @@
 <template>
-  <div id="app">
+  <div id="main">
+    <div id="header">
+
+      <img src="./assets/header.jpg" alt="Logo">
+    </div>
     <div id="nav">
      <TheHeader />
-      
     </div>
+    <div id="router">
     <router-view />
+    </div>
   </div>
 </template>
 
@@ -20,9 +25,40 @@ export default {
 
 
 <style scoped>
-#app {
-  display: flex;
-  flex-direction: column;
-  
+#main {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-areas: " nav header"
+                       " nav   router"
+                       " nav   router"
+                       " footer footer ";
+    row-gap: 20px;
+    column-gap: 50px;
+}
+
+#header {
+  grid-area: header;
+}
+img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 400px;
+  max-height: 200px;
+  object-fit: contain;
+}
+
+#nav {
+  grid-area: nav;
+  row-gap: 0px;
+  padding-bottom: 400px;
+}
+
+#router {
+  grid-area: router;
+}
+
+#footer {
+  grid-area: footer;
 }
 </style>

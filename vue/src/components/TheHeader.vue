@@ -18,16 +18,20 @@ export default {
 
 <style>
 #nav {
-   display: flex;
+  display: flex;
   justify-content: center;
+  flex-direction: column;
   padding: 20px;
 }
 #nav a{
     padding: 15px 24px;
     color: black;
+    border-radius: 8px;
+    font-family: "Give You Glory", sans-serif;
+
 }
 #nav a:hover {
-  background-color: black;
-  color: white;
+  background-color: #EBEFD1;
+  color: #001E10;
 }
 </style>

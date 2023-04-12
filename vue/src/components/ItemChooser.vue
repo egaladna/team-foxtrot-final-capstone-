@@ -100,5 +100,6 @@ export default {
 div img {
   height: auto;
   width: 100px;
+  margin: 3px;
 }
 </style>

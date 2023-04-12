@@ -28,7 +28,14 @@ export default {
     display: flex;
     justify-content: space-evenly;
 }
-
+#selected-items {
+    display: flex;
+    flex-direction: column;
+    border: solid #1B3536;
+    border-radius: 8px;
+    width: fit-content;
+    block-size: fit-content;
+}
 
 
 </style>
