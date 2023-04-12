@@ -5,6 +5,7 @@
     <div v-for="cloth in displayedClothes" v-bind:key="cloth.id">
       <ClothingItem v-bind:cloth="cloth" />
       <button v-on:click.prevent="deleteClothingItem(cloth.id)">Delete</button>
+      <!-- <p id="msg"></p> -->
     </div>
   </div>
 
@@ -36,23 +37,21 @@ export default {
           console.error(err);
         });
     },
-    // confirm(){
-    //  let userPreference;
-    //  if(confirm("Do you want to delete?") == true) {
-    //    userPreference = "Item Deleted";
-
-    //  } else {
-    //    userPreference = "Cancelled";
-    //  }
-    // },
 
     deleteClothingItem(itemId) {
-      ClosetService.deleteClothingItem(itemId).then((response) => {
-        if (response.status == 200) {
-          this.getClothesList();
-        }
-      });
+      if (confirm("Are you sure you want to delete this garment? It will also be removed from any saved otufits.") == true) {
+        ClosetService.deleteClothingItem(itemId).then(response => {
+          if (response.status == 200) {
+            this.getClothesList();
+          }
+        }).catch(err => console.error(err));
+      } 
+			
     },
+
+
+
+
   },
 
   computed: {
