@@ -23,5 +23,6 @@ export default {
 #app {
   display: flex;
   flex-direction: column;
+  
 }
 </style>

@@ -7,6 +7,21 @@
 
 <script>
 export default {
-  name: "home"
+  name: "home",
+ 
 };
 </script>
+<style scoped>
+
+/* body{
+    background-image: url('../assets/foxtrot-landing.png');
+    max-width: 100%;
+    max-height: 100%;
+} */
+.home {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+</style>

@@ -3,6 +3,6 @@ body {
 }
 
 img {
-    width: 100px;
-    height: auto;
+    min-height: 50px;
+    
 }
