@@ -54,8 +54,12 @@ img {
 }
 .outfit-container{
   margin: 20px;
+  padding: 20px;
   display: flex;
-  border: 5px black solid;
+  border: solid #1B3536;
+  border-radius: 8px;
+  width: fit-content;
+  block-size: fit-content;
 
 }
 .all-outfits{
