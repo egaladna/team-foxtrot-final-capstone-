@@ -1,6 +1,8 @@
 <template>
   <div>
+    <span v-if="selectedForType">
     <img v-if="selectedForType" :src="selectedForType.imgUrl" />
+    </span>
   </div>
 </template>
 
@@ -11,7 +13,7 @@ export default {
   computed: {
     selectedForType() {
       return this.$store.state.selectedItems.find((cloth) => {
-        return this.type === cloth.type;
+        return this.type === cloth.type && cloth.imgUrl;
       });
     },
   },
