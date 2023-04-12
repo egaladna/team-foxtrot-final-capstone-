@@ -1,12 +1,21 @@
 <template>
-  <div id="all-outfits" >
-      <div>
-           <h1>My Outfits</h1>
+  <div id="whole-component">
+    <div>
+      <h1>My Outfits</h1>
+    </div>
+    <div class="all-outfits">
+      <div
+        class="outfit-container"
+        v-for="outfit in outfits"
+        v-bind:key="outfit.id"
+      >
+        <img
+          v-for="item in outfit.itemList"
+          v-bind:key="item.id"
+          v-bind:src="item.imgUrl"
+        />
       </div>
-     
-    <div class="outfit-container" v-for="outfit in outfits" v-bind:key="outfit.id">
-        <img v-for="item in outfit.itemList" v-bind:key="item.id" v-bind:src="item.imgUrl"/>
-        </div>
+    </div>
   </div>
 </template>
 
@@ -28,21 +37,30 @@ export default {
         })
         .catch((err) => console.error(err));
     },
-    
   },
-  created(){
-      this.getAllOutfits();
-  }
+  created() {
+    this.getAllOutfits();
+  },
 };
 </script>
 
 <style>
-#all-outfits{
-    display: flex;
-    flex-direction: column;
+#whole-component {
+  display: flex;
+  flex-direction: column;
 }
 img {
   margin: 3px;
 }
+.outfit-container{
+  margin: 20px;
+  display: flex;
+  border: 5px black solid;
 
+}
+.all-outfits{
+  display: flex;
+  flex-direction: column;
+ 
+}
 </style>
