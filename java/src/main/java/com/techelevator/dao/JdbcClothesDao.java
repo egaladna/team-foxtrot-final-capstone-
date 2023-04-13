@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Component
 
@@ -17,6 +18,14 @@ public class JdbcClothesDao implements ClothesDao{
 
     public JdbcClothesDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate (dataSource);
+    }
+
+    @Override
+    public ClothingItem addClothingItem(ClothingItem itemToAdd) {
+        String sql = "INSERT INTO clothes (type, img_url, user_id) VALUES (?, ?, ?) returning item_id";
+        Integer id = jdbcTemplate.queryForObject(sql, Integer.class, itemToAdd.getType(), itemToAdd.getImgUrl(), itemToAdd.getUserId());
+        itemToAdd.setId(id);
+        return itemToAdd;
     }
 
     @Override
@@ -64,6 +73,7 @@ public class JdbcClothesDao implements ClothesDao{
         }
         return types;
     }
+
 
     private ClothingItem mapRowToClothingItem(SqlRowSet row) {
         ClothingItem cloth = new ClothingItem();

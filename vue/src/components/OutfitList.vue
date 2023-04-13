@@ -48,6 +48,7 @@ export default {
 #whole-component {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 img {
   margin: 3px;
@@ -65,6 +66,5 @@ img {
 .all-outfits{
   display: flex;
   flex-direction: column;
- 
 }
 </style>

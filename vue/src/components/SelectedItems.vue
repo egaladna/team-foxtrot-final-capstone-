@@ -40,9 +40,7 @@ export default {
 }
 </script>
 <style>
-#main{
-    display: flex;
-}
+
 .selectedImages {
     display: flex;
     flex-direction: column;
@@ -54,9 +52,6 @@ export default {
    border: 0;
 }
 
-i {
-
-}
 
 
 </style>
