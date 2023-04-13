@@ -1,15 +1,18 @@
-<template> 
-<div id="closet">
-  <h1>My Closet</h1>
-  <div id = "clothing-items">
-    <div v-for="cloth in displayedClothes" v-bind:key="cloth.id">
-      <ClothingItem v-bind:cloth="cloth" />
-      <i class="fa fa-trash-o" title="Delete" style="font-style:24px;" v-on:click.prevent="deleteClothingItem(cloth.id)"></i>
-      <!-- <p id="msg"></p> -->
+<template>
+  <div id="closet">
+    <h1>My Closet</h1>
+    <div id="clothing-items">
+      <div v-for="cloth in displayedClothes" v-bind:key="cloth.id">
+        <ClothingItem v-bind:cloth="cloth" />
+        <i
+          class="fa fa-trash-o"
+          title="Delete"
+          style="font-style: 24px"
+          v-on:click.prevent="deleteClothingItem(cloth.id)"
+        ></i>
+      </div>
     </div>
   </div>
-
-</div>
 </template>
 
 <script>
@@ -39,19 +42,20 @@ export default {
     },
 
     deleteClothingItem(itemId) {
-      if (confirm("Are you sure you want to delete this garment? It will also be removed from any saved otufits.") == true) {
-        ClosetService.deleteClothingItem(itemId).then(response => {
-          if (response.status == 200) {
-            this.getClothesList();
-          }
-        }).catch(err => console.error(err));
-      } 
-			
+      if (
+        confirm(
+          "Are you sure you want to delete this garment? It will also be removed from any saved otufits."
+        ) == true
+      ) {
+        ClosetService.deleteClothingItem(itemId)
+          .then((response) => {
+            if (response.status == 200) {
+              this.getClothesList();
+            }
+          })
+          .catch((err) => console.error(err));
+      }
     },
-
-
-
-
   },
 
   computed: {
@@ -63,7 +67,7 @@ export default {
   },
 
   created() {
-      this.getClothesList();
+    this.getClothesList();
   },
 };
 </script>
