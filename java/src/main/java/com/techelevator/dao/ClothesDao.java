@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface ClothesDao {
 
+    ClothingItem addClothingItem(ClothingItem itemToAdd);
     List<ClothingItem> getClothesForUser(int userId);
     ClothingItem getClothingItemById(int itemId);
     void deleteClothingItem(int itemId);
