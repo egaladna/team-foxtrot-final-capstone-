@@ -47,6 +47,7 @@ export default {
   display: flex;
   justify-content: center;
   padding-bottom: 40px;
+  background-color: #001e10;
 }
 img {
   display: block;
@@ -55,6 +56,7 @@ img {
   max-width: 400px;
   max-height: 200px;
   object-fit: contain;
+  border: none;
 }
 
 #l-nav {

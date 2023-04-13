@@ -2,7 +2,9 @@ body {
     background-color: #ebefd1; 
     font-family: "Aleo", sans-serif;
  }
- 
+ template > div {
+   display: flex;
+ }
  img {
      min-height: 50px;
      border: solid #1B3536;

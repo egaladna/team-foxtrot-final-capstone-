@@ -75,7 +75,9 @@ export default {
   justify-content: space-around;
 }
 #closet {
+  padding-top: 5%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 </style>
