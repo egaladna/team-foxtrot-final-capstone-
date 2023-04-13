@@ -8,7 +8,6 @@
      <TheHeader />
     </div>
     <div id="r-nav">
-     <TheHeader />
     </div>
     <div id="router">
     <router-view />
@@ -37,10 +36,9 @@ export default {
 #main {
   display: grid;
   grid-template-columns: 10% 80% 10%;
-  grid-template-areas: "header  header  header"
+  grid-template-areas: "l-nav  header  r-nav"
                        "l-nav   router  r-nav"
                        "footer  footer  footer";
-    row-gap: 20px;
 
 }
 
@@ -48,6 +46,7 @@ export default {
   grid-area: header;
   display: flex;
   justify-content: center;
+  padding-bottom: 40px;
 }
 img {
   display: block;
@@ -60,10 +59,15 @@ img {
 
 #l-nav {
   grid-area: l-nav;
- 
+  display: flex;
+  justify-content: center;
+  background-color: #001e10;
+  padding-top: 50px;
 }
+
 #r-nav {
   grid-area: r-nav;
+  background-color: #001e10;
  
 }
 
@@ -71,9 +75,12 @@ img {
   grid-area: router;
   display: flex;
   justify-content: center;
+  min-height: 60vh;
+  padding-bottom: 20px;
 }
 
 #footer {
   grid-area: footer;
+  background-color: #be6e46;
 }
 </style>

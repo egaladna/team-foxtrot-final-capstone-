@@ -24,9 +24,11 @@ export default {
 }
 #nav a{
     padding: 15px 24px;
-    color: black;
+    color: #EBEFD1;
     border-radius: 8px;
-    font-family: "Give You Glory", sans-serif;
+    font-family: sans-serif;
+    text-decoration: none;
+    font-size: 20px;
 
 }
 #nav a:hover {
