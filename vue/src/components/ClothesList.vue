@@ -1,6 +1,8 @@
 <template>
   <div id="closet">
     <h1>My Closet</h1>
+    <!-- <UploadWidget /> -->
+    <button @click="uploadFile">Add To Closet</button>
     <div id="clothing-items">
       <div v-for="cloth in displayedClothes" v-bind:key="cloth.id">
         <ClothingItem v-bind:cloth="cloth" />
@@ -18,6 +20,7 @@
 <script>
 import ClothingItem from "@/components/ClothingItem";
 import ClosetService from "@/services/ClosetService";
+// import UploadWidget from "@/components/UploadWidget.vue"
 
 export default {
   data() {
@@ -28,9 +31,28 @@ export default {
 
   components: {
     ClothingItem,
+    //UploadWidget
   },
 
   methods: {
+     uploadFile() {
+       console.log("My Name")
+      window.cloudinary
+        .createUploadWidget(
+          {
+            cloud_name: "dlnxljpbd",
+            upload_preset: "isitiv64",
+
+          },
+          (error, result) => {
+            if (!error && result && result.event === "success") {
+              console.log("Done uploading..: ", result.info);
+            }
+          }
+        )
+        .open();
+    },
+    
     getClothesList() {
       ClosetService.getClothingList()
         .then((response) => {
