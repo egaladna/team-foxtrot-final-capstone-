@@ -26,7 +26,10 @@ export default {
 <style>
 #main-selection{
     display: flex;
-    justify-content: space-between;
+}
+
+#item-chooser {
+    margin-right: 8%;
 }
 
 #item-chooser,
