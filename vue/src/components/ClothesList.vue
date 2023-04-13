@@ -4,7 +4,7 @@
   <div id = "clothing-items">
     <div v-for="cloth in displayedClothes" v-bind:key="cloth.id">
       <ClothingItem v-bind:cloth="cloth" />
-      <button v-on:click.prevent="deleteClothingItem(cloth.id)">Delete</button>
+      <i class="fa fa-trash-o" title="Delete" style="font-style:24px;color:#be6346" v-on:click.prevent="deleteClothingItem(cloth.id)"></i>
       <!-- <p id="msg"></p> -->
     </div>
   </div>
