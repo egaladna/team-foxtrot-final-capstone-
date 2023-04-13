@@ -9,16 +9,22 @@
     </div>
     <div id="router">
     <router-view />
+    <div id = "footer">
+      <TheFooter />
+    </div>
+    
     </div>
   </div>
 </template>
 
 <script>
 import TheHeader from '../src/components/TheHeader.vue'
+import TheFooter from './components/TheFooter.vue'
 
 export default {
   components: {
-   TheHeader
+   TheHeader,
+    TheFooter
   }
 }
 </script>

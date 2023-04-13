@@ -1,11 +1,12 @@
 <template>
   <div id="main">
-    <div id="clothing-items" v-for="type in types" v-bind:key="type.id">
+    <div class="row">
+    <div class="card" id="clothing-items" v-for="type in types" v-bind:key="type.id">
       <p id="type">Choose your {{ type }}:</p>
       <div id="image-container">
-        <img v-on:click="makeSelection(cloth)" v-for="cloth in filterByType(type)" v-bind:key="cloth.id" v-bind:src="cloth.imgUrl"
-        />
+        <img v-on:click="makeSelection(cloth)" v-for="cloth in filterByType(type)" v-bind:key="cloth.id" v-bind:src="cloth.imgUrl"/>
       </div>
+    </div>
     </div>
   </div>
 </template>
