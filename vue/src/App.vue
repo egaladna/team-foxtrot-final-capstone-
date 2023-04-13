@@ -9,12 +9,12 @@
     </div>
     <div id="router">
     <router-view />
+    </div>
     <div id = "footer">
       <TheFooter />
     </div>
     
     </div>
-  </div>
 </template>
 
 <script>
@@ -33,9 +33,8 @@ export default {
 <style scoped>
 #main {
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 12% 88%;
   grid-template-areas: " nav header"
-                       " nav   router"
                        " nav   router"
                        " footer footer ";
     row-gap: 20px;
@@ -44,6 +43,8 @@ export default {
 
 #header {
   grid-area: header;
+  display: flex;
+  justify-content: center;
 }
 img {
   display: block;
@@ -56,12 +57,13 @@ img {
 
 #nav {
   grid-area: nav;
-  row-gap: 0px;
-  padding-bottom: 400px;
+ 
 }
 
 #router {
   grid-area: router;
+  display: flex;
+  justify-content: center;
 }
 
 #footer {

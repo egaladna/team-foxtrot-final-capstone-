@@ -19,9 +19,8 @@ export default {
 <style>
 #nav {
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  padding: 20px;
+
 }
 #nav a{
     padding: 15px 24px;

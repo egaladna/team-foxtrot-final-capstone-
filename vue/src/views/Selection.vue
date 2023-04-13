@@ -28,9 +28,7 @@ export default {
     display: flex;
 }
 
-#item-chooser {
-    margin-right: 8%;
-}
+
 
 #item-chooser,
 #selected-items {
@@ -39,6 +37,7 @@ export default {
     width: fit-content;
     block-size: fit-content;
     padding: 40px;
+    margin-right: 10%;
 }
 
 
