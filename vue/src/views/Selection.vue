@@ -1,5 +1,5 @@
 <template>
-  <div id="main-selection">
+  <div id="main-selection" class="view-frame">
       <div id="item-chooser">
            <ItemChooser />
       </div>

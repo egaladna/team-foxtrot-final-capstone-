@@ -46,7 +46,6 @@ export default {
   grid-area: header;
   display: flex;
   justify-content: center;
-  padding-bottom: 40px;
   background-color: #001e10;
 }
 img {

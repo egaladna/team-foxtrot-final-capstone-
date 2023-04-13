@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="view-frame">
     <h1>Home</h1>
     <p>You must be authenticated to see this</p>
   </div>
