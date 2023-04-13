@@ -4,7 +4,10 @@
 
       <img src="./assets/header.jpg" alt="Logo">
     </div>
-    <div id="nav">
+    <div id="l-nav">
+     <TheHeader />
+    </div>
+    <div id="r-nav">
      <TheHeader />
     </div>
     <div id="router">
@@ -33,12 +36,12 @@ export default {
 <style scoped>
 #main {
   display: grid;
-  grid-template-columns: 12% 88%;
-  grid-template-areas: " nav header"
-                       " nav   router"
-                       " footer footer ";
+  grid-template-columns: 10% 80% 10%;
+  grid-template-areas: "header  header  header"
+                       "l-nav   router  r-nav"
+                       "footer  footer  footer";
     row-gap: 20px;
-    column-gap: 50px;
+
 }
 
 #header {
@@ -55,8 +58,12 @@ img {
   object-fit: contain;
 }
 
-#nav {
-  grid-area: nav;
+#l-nav {
+  grid-area: l-nav;
+ 
+}
+#r-nav {
+  grid-area: r-nav;
  
 }
 
