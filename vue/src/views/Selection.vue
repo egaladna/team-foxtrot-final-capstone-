@@ -1,5 +1,5 @@
 <template>
-  <div id="main">
+  <div id="main-selection">
       <div id="item-chooser">
            <ItemChooser />
       </div>
@@ -24,15 +24,13 @@ export default {
 </script>
 
 <style>
-#main{
+#main-selection{
     display: flex;
     justify-content: space-between;
 }
 
 #item-chooser,
 #selected-items {
-    display: flex;
-    flex-direction: column;
     border: solid #1B3536;
     border-radius: 8px;
     width: fit-content;
