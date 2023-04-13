@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Component
 
@@ -72,6 +73,7 @@ public class JdbcClothesDao implements ClothesDao{
         }
         return types;
     }
+
 
     private ClothingItem mapRowToClothingItem(SqlRowSet row) {
         ClothingItem cloth = new ClothingItem();

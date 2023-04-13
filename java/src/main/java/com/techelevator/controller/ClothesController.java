@@ -43,6 +43,7 @@ public class ClothesController {
         clothesDao.deleteClothingItem(id);
     }
 
+
     @RequestMapping(path = "/types", method = RequestMethod.GET)
     public List<String> listTypes() {
         return clothesDao.listTypes();
