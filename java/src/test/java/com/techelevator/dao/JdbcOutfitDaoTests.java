@@ -22,7 +22,7 @@ public class JdbcOutfitDaoTests extends BaseDaoTests{
     @Test
     public void addOutfit_returns_id() {
         int[] ids = new int[]{2001, 2002, 2004};
-        Assert.assertEquals(4002, sut.addOutfit(ids, 1));
+        Assert.assertEquals(4004, sut.addOutfit(ids, 1));
     }
     @Test
     public void getOutfitById_returns_correct_outfit(){

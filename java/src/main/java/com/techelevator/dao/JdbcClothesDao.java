@@ -20,6 +20,14 @@ public class JdbcClothesDao implements ClothesDao{
     }
 
     @Override
+    public ClothingItem addClothingItem(ClothingItem itemToAdd) {
+        String sql = "INSERT INTO clothes (type, img_url, user_id) VALUES (?, ?, ?) returning item_id";
+        Integer id = jdbcTemplate.queryForObject(sql, Integer.class, itemToAdd.getType(), itemToAdd.getImgUrl(), itemToAdd.getUserId());
+        itemToAdd.setId(id);
+        return itemToAdd;
+    }
+
+    @Override
     public List<ClothingItem> getClothesForUser(int userId) {
         List<ClothingItem> clothes = new ArrayList<>();
         String sql = "SELECT item_id, type, img_url, user_id FROM clothes " +
