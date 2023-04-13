@@ -26,8 +26,10 @@ export default {
 <style>
 #main{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
+
+#item-chooser,
 #selected-items {
     display: flex;
     flex-direction: column;
@@ -35,7 +37,10 @@ export default {
     border-radius: 8px;
     width: fit-content;
     block-size: fit-content;
+    padding: 40px;
 }
+
+
 
 
 </style>

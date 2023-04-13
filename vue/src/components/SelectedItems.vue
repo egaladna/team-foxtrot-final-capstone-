@@ -4,7 +4,7 @@
       <div class="selectedItemsDiv" v-for="type in types" :key="type.id">
         <SelectedItem :type="type"/>
         </div>
-      <button v-on:click.prevent="saveOutfits">Save Outfit</button> 
+      <i class="fa fa-save" title="Save" style="font-size:24px;" v-on:click.prevent="saveOutfits"></i> 
   </div>
 </template>
 
@@ -53,4 +53,10 @@ export default {
 .selectedItemsDiv {
    border: 0;
 }
+
+i {
+
+}
+
+
 </style>

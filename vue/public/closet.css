@@ -1,5 +1,5 @@
 body {
-    background-color: #BE6E46; 
+    background-color: #ebefd1; 
     font-family: "Aleo", sans-serif;
  }
  
@@ -13,7 +13,20 @@ body {
  
  button {
      border-radius: 8px;
-     background-color: #94AFB3;
+     color: #94AFB3;
+ }
+
+ i {
+   border: none;
+   width: 32px;
+   height: 32px;
+   color: #be6e46;
+   transition: all ease-in-out 0.2s;
+   cursor: pointer;
+ }
+
+ i:hover {
+   color: #1b3536;
  }
  
  img:hover {
@@ -31,7 +44,7 @@ body {
    
    /* Handle */
    ::-webkit-scrollbar-thumb {
-     background: #EBEFD1;
+     background: #be6346
    }
    
    /* Handle on hover */
@@ -40,5 +53,5 @@ body {
    }
  
    ::-webkit-scrollbar-button {
-       background-color: #BE6E46;
+       background-color: #ebefd1;
    }
