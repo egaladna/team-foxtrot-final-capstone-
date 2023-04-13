@@ -1,7 +1,7 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS  item_type, clothes_outfits, outfits, clothes_categories, clothes, users, categories;
-DROP SEQUENCE IF EXISTS seq_item_id, seq_category_id, seq_outfit_id; 
+DROP TABLE IF EXISTS  clothes_files, files, item_type, clothes_outfits, outfits, clothes_categories, clothes, users, categories;
+DROP SEQUENCE IF EXISTS seq_file_id,seq_item_id, seq_category_id, seq_outfit_id; 
 
 CREATE TABLE users (
 	user_id SERIAL,
@@ -10,6 +10,22 @@ CREATE TABLE users (
 	role varchar(50) NOT NULL,
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
+
+
+CREATE SEQUENCE seq_file_id 
+INCREMENT by 1 
+START WITH 8001 
+NO MAXVALUE;
+CREATE TABLE files (
+	file_id int PRIMARY KEY DEFAULT nextval('seq_file_id') NOT NULL,
+	user_id int,
+	file_name varchar(500),
+	file_size bigint,
+	file_type varchar(500),
+	file_url  varchar (500),
+	CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users(user_id) 
+);
+
 
 CREATE TABLE item_type (
 	type varchar(50) PRIMARY KEY
@@ -29,6 +45,15 @@ CREATE TABLE clothes (
 	CONSTRAINT FK_clothes_user_id FOREIGN KEY(user_id) REFERENCES users(user_id),
 	CONSTRAINT FK_clothes_type FOREIGN KEY (type) REFERENCES item_type(type) 
 	
+);
+
+CREATE  TABLE clothes_files(
+ item_id int,
+ file_id int,
+ CONSTRAINT PK_clothes_files PRIMARY KEY(item_id,file_id),
+ CONSTRAINT FK_clothes_files_item_id FOREIGN KEY (item_id) REFERENCES clothes(item_id),
+ CONSTRAINT FK_clothes_files_file_id FOREIGN KEY (file_id) REFERENCES files(file_id)
+ 
 );
 
 CREATE SEQUENCE seq_category_id 
