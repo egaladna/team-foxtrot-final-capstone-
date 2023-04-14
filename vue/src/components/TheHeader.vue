@@ -1,7 +1,7 @@
 <template>
   <div>
       <nav id = "nav">
-           <router-link v-bind:to="{ name: 'home' }">Home </router-link>
+           <router-link v-if="$route.name != 'home'" v-bind:to="{ name: 'home' }">Home </router-link>
            <router-link v-if="$route.name != 'closet' " v-bind:to="{ name: 'closet' }">My Closet </router-link>
            <router-link v-if="$route.name == 'closet' || $route.name == 'outfits' " v-bind:to="{ name: 'selection' }">Choose Outfit </router-link>
            <router-link v-if="$route.name == 'closet' || $route.name == 'selection' " v-bind:to="{ name: 'outfits' }">My Outfits </router-link>
@@ -19,15 +19,16 @@ export default {
 <style>
 #nav {
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  padding: 20px;
+
 }
 #nav a{
     padding: 15px 24px;
-    color: black;
+    color: #EBEFD1;
     border-radius: 8px;
-    font-family: "Give You Glory", sans-serif;
+    font-family: sans-serif;
+    text-decoration: none;
+    font-size: 20px;
 
 }
 #nav a:hover {

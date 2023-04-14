@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="view-frame">
 <OutfitList />
   </div>
 </template>

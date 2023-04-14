@@ -21,10 +21,5 @@ export default {
 </script>
 
 <style>
-img {
-  display: flex;
-  height: auto;
-  width: 100px;
-  
-}
+
 </style>

@@ -14,7 +14,7 @@ public class JdbcClothesDaoTests extends BaseDaoTests{
     private static final ClothingItem TEST_ITEM_2 = new ClothingItem("BOTTOM", "https://images.express.com/is/image/expressfashion/0092_09192214_2919_f001?cache=on&wid=361&fmt=jpeg&qlt=75,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon", 1, 2002);
     private static final ClothingItem TEST_ITEM_3 = new ClothingItem("FULL BODY", "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/61kmUxj0PFL._UX569_.jpg", 1, 2003);
     private static final ClothingItem TEST_ITEM_4 = new ClothingItem("FOOTWEAR", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6Fa0oBMWIUf2G_qSWW7tetQf8WHnMgWQhww&usqp=CAU", 1, 2004);
-
+    private static final ClothingItem TEST_ITEM_5 = new ClothingItem("OUTERWEAR", "FAKE_URL", 1, 0);
     private JdbcClothesDao sut;
 
     @Before
@@ -57,6 +57,19 @@ public class JdbcClothesDaoTests extends BaseDaoTests{
         types.add("ACCESSORIES");
         types.add("OUTERWEAR");
         Assert.assertEquals(types, sut.listTypes());
+    }
+
+    @Test
+    public void addClothingItem_adds_item() {
+        ClothingItem returned = sut.addClothingItem(TEST_ITEM_5);
+        Assert.assertEquals(sut.getClothingItemById(returned.getId()), returned);
+    }
+
+    @Test
+    public void addClothingItem_returns_correct_item() {
+        ClothingItem returned = sut.addClothingItem(TEST_ITEM_5);
+        TEST_ITEM_5.setId(returned.getId());
+        Assert.assertEquals(TEST_ITEM_5, returned);
     }
 
 }

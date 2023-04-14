@@ -4,21 +4,29 @@
 
       <img src="./assets/header.jpg" alt="Logo">
     </div>
-    <div id="nav">
+    <div id="l-nav">
      <TheHeader />
+    </div>
+    <div id="r-nav">
     </div>
     <div id="router">
     <router-view />
     </div>
-  </div>
+    <div id = "footer">
+      <TheFooter />
+    </div>
+    
+    </div>
 </template>
 
 <script>
 import TheHeader from '../src/components/TheHeader.vue'
+import TheFooter from './components/TheFooter.vue'
 
 export default {
   components: {
-   TheHeader
+   TheHeader,
+    TheFooter
   }
 }
 </script>
@@ -27,17 +35,18 @@ export default {
 <style scoped>
 #main {
   display: grid;
-  grid-template-columns: 20% 80%;
-  grid-template-areas: " nav header"
-                       " nav   router"
-                       " nav   router"
-                       " footer footer ";
-    row-gap: 20px;
-    column-gap: 50px;
+  grid-template-columns: 10% 80% 10%;
+  grid-template-areas: "l-nav  header  r-nav"
+                       "l-nav   router  r-nav"
+                       "footer  footer  footer";
+
 }
 
 #header {
   grid-area: header;
+  display: flex;
+  justify-content: center;
+  background-color: #001e10;
 }
 img {
   display: block;
@@ -46,19 +55,33 @@ img {
   max-width: 400px;
   max-height: 200px;
   object-fit: contain;
+  border: none;
 }
 
-#nav {
-  grid-area: nav;
-  row-gap: 0px;
-  padding-bottom: 400px;
+#l-nav {
+  grid-area: l-nav;
+  display: flex;
+  justify-content: center;
+  background-color: #001e10;
+  padding-top: 50px;
+}
+
+#r-nav {
+  grid-area: r-nav;
+  background-color: #001e10;
+ 
 }
 
 #router {
   grid-area: router;
+  display: flex;
+  justify-content: center;
+  min-height: 60vh;
+  padding-bottom: 20px;
 }
 
 #footer {
   grid-area: footer;
+  background-color: #be6e46;
 }
 </style>

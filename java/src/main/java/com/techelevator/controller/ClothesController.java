@@ -16,6 +16,7 @@ public class ClothesController {
 
     private ClothesDao clothesDao;
     private UserDao userDao;
+    private int currentUserId;
 
     public ClothesController(ClothesDao clothesDao, UserDao userDao) {
         this.clothesDao = clothesDao;
@@ -27,6 +28,12 @@ public class ClothesController {
       return clothesDao.getClothesForUser(userDao.findIdByUsername(principal.getName()));
     }
 
+    @RequestMapping(path="closet", method=RequestMethod.POST)
+    public ClothingItem addClothingItem(@RequestBody ClothingItem clothingItem, Principal principal) {
+        clothingItem.setUserId(userDao.findIdByUsername(principal.getName()));
+        return clothesDao.addClothingItem(clothingItem);
+    }
+
     @RequestMapping(path="/closet/{id}", method= RequestMethod.DELETE)
     public void deleteItemById(@PathVariable int id, Principal principal) {
         ClothingItem cloth = clothesDao.getClothingItemById(id);
@@ -35,6 +42,7 @@ public class ClothesController {
         }
         clothesDao.deleteClothingItem(id);
     }
+
 
     @RequestMapping(path = "/types", method = RequestMethod.GET)
     public List<String> listTypes() {
