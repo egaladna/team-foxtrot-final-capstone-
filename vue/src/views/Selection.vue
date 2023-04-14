@@ -26,6 +26,7 @@ export default {
 <style>
 #main-selection{
     display: flex;
+    
 }
 
 
