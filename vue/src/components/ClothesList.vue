@@ -1,8 +1,6 @@
 <template>
   <div id="closet">
     <h1>My Closet</h1>
-    <!-- <UploadWidget /> -->
-    <button @click="uploadFile">Add To Closet</button>
     <div id="clothing-items">
       <div v-for="cloth in displayedClothes" v-bind:key="cloth.id">
         <ClothingItem v-bind:cloth="cloth" />
@@ -37,24 +35,6 @@ export default {
   },
 
   methods: {
-     uploadFile() {
-       console.log("My Name")
-      window.cloudinary
-        .createUploadWidget(
-          {
-            cloud_name: "dlnxljpbd",
-            upload_preset: "isitiv64",
-
-          },
-          (error, result) => {
-            if (!error && result && result.event === "success") {
-              console.log("Done uploading..: ", result.info.secure_url);
-            }
-          }
-        )
-        .open();
-    },
-    
     getClothesList() {
       ClosetService.getClothingList()
         .then((response) => {
@@ -68,7 +48,7 @@ export default {
     deleteClothingItem(itemId) {
       if (
         confirm(
-          "Are you sure you want to delete this garment? It will also be removed from any saved otufits."
+          "Are you sure you want to delete this garment? It will also be removed from any saved outfits."
         ) == true
       ) {
         ClosetService.deleteClothingItem(itemId)
