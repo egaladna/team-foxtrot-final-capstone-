@@ -87,7 +87,7 @@ export default {
   display: flex;
 }
 
-#main {
+.row {
   flex-direction: column;
 }
 #type {

@@ -22,9 +22,7 @@ import ClosetService from "@/services/ClosetService";
 
 export default {
   data() {
-    return {
-      clothing: [],
-    };
+    return {};
   },
 
   components: {
@@ -33,14 +31,12 @@ export default {
   },
 
   methods: {
-    getClothesList() {
+    refreshCloset() {
       ClosetService.getClothingList()
         .then((response) => {
-          this.clothing = response.data;
+          this.$store.commit("UPDATE_CLOSET", response.data);
         })
-        .catch((err) => {
-          console.error(err);
-        });
+        .catch((err) => console.error(err));
     },
 
     deleteClothingItem(itemId) {
@@ -52,7 +48,7 @@ export default {
         ClosetService.deleteClothingItem(itemId)
           .then((response) => {
             if (response.status == 200) {
-              this.getClothesList();
+             this.refreshCloset();
             }
           })
           .catch((err) => console.error(err));
@@ -62,14 +58,12 @@ export default {
 
   computed: {
     displayedClothes() {
-      return this.clothing.filter((cloth) => {
-        return cloth;
-      });
+      return this.$store.state.myCloset;
     },
   },
 
   created() {
-    this.getClothesList();
+    this.refreshCloset();
   },
 };
 </script>
