@@ -46,7 +46,7 @@ export default {
           },
           (error, result) => {
             if (!error && result && result.event === "success") {
-              console.log("Done uploading..: ", result.info);
+              console.log("Done uploading..: ", result.info.secure_url);
             }
           }
         )
