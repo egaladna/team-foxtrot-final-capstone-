@@ -4,7 +4,8 @@
       <div class="selectedItemsDiv" v-for="type in types" :key="type.id">
         <SelectedItem :type="type"/>
         </div>
-      <i class="fa fa-save" title="Save" style="font-size:24px;" v-on:click.prevent="saveOutfits"></i> 
+      <i class="fa fa-save" title="Save" style="font-size:24px;" v-on:click.prevent="saveOutfits"></i>
+      <button @click="randomGenerator">Randomize Outfit</button> 
   </div>
 </template>
 
@@ -22,7 +23,9 @@ export default {
         }
     },
     computed: {
-
+        clothingList() {
+            return this.$store.state.myCloset;
+        }
     },
     methods: {
         saveOutfits(){
@@ -30,6 +33,18 @@ export default {
                 return item.id
             }); 
             OutfitService.addOutfit(cleanedUpList);
+        },
+        randomGenerator() {
+            this.types.forEach(type => {
+                let allClothesOfType = this.clothingList.filter(cloth => {
+                    return cloth.type == type;
+                })
+                if(allClothesOfType.length > 0) {
+                let randomIndex = Math.floor(Math.random() * allClothesOfType.length);
+                this.$store.commit('SELECT_ITEM', allClothesOfType[randomIndex]);
+                }
+            });
+
         }
     },
     created() {
