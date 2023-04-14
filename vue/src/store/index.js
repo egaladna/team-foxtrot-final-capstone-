@@ -23,6 +23,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     selectedItems: [],
+    myCloset: []
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -51,5 +52,8 @@ export default new Vuex.Store({
       const blankSelection = {type: cloth.type};
       this.commit('SELECT_ITEM', blankSelection);
     },
+    UPDATE_CLOSET(state, clothesList) {
+      state.myCloset = clothesList; 
+    }
   }
 })
