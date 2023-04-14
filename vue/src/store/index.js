@@ -52,6 +52,9 @@ export default new Vuex.Store({
       const blankSelection = {type: cloth.type};
       this.commit('SELECT_ITEM', blankSelection);
     },
+    CLEAR_SELECTION(state) {
+      state.selectedItems = [];
+    },
     UPDATE_CLOSET(state, clothesList) {
       state.myCloset = clothesList; 
     }
