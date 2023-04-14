@@ -23,6 +23,13 @@ export default {
   },
  
   methods: {
+    refreshCloset() {
+      ClosetService.getClothingList()
+        .then((response) => {
+          this.$store.commit("UPDATE_CLOSET", response.data);
+        })
+        .catch((err) => console.error(err));
+    },
     getClothesList() {
       ClosetService.getClothingList()
         .then((response) => {
@@ -76,6 +83,7 @@ export default {
       })
       .catch((err) => console.error(err));
     this.getClothesList();
+    this.refreshCloset();
   },
 };
 </script>
@@ -94,6 +102,7 @@ export default {
 }
 #image-container {
   flex-direction: row;
+  flex-wrap: wrap;
 }
 #clothing-items {
   flex-direction: column;
