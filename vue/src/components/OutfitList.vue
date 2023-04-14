@@ -2,6 +2,7 @@
   <div id="whole-component">
     <div>
       <h1>My Outfits</h1>
+      <ShareButtons />
     </div>
     <div class="all-outfits">
       <div
@@ -21,11 +22,16 @@
 
 <script>
 import OutfitService from "../services/OutfitService";
+import ShareButtons from "../components/ShareButtons";
+
 export default {
   data() {
     return {
       outfits: [],
     };
+  },
+  components: {
+    ShareButtons
   },
   methods: {
     getAllOutfits() {
