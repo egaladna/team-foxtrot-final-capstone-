@@ -19,6 +19,6 @@ export default {
 
 <style>
 div {
-  display: flex;
+ 
 }
 </style>
