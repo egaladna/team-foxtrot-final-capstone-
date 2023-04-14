@@ -25,14 +25,17 @@ export default {
     computed: {
         clothingList() {
             return this.$store.state.myCloset;
+        },
+        cleanedUpList() {
+            return this.$store.state.selectedItems.filter((item) => {
+                return item.id
+            });
         }
     },
     methods: {
         saveOutfits(){
-            const cleanedUpList = this.$store.state.selectedItems.filter((item) => {
-                return item.id
-            }); 
-            OutfitService.addOutfit(cleanedUpList);
+            OutfitService.addOutfit(this.cleanedUpList);
+            this.$store.commit('CLEAR_SELECTION');
         },
         randomGenerator() {
             this.types.forEach(type => {

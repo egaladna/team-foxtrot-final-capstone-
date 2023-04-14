@@ -1,13 +1,28 @@
 <template>
   <div>
     <!-- <UploadWidget /> -->
-    <button @click="uploadFile">Upload Files</button>
-    <div v-if="urlsToUpload.length != 0" id="pendingimages">
+    <button v-if="!showUpload" @click="showUpload = true">Add Clothes</button>
+    <div v-if="showUpload" class="uploading-display">
       <div>
-        <img v-for="url in urlsToUpload" :key="url.id" v-bind:src="url" />
+        <label for="category">Category:</label>
+        <select
+          id="category"
+          v-model="selectedType"
+        >
+          <option v-for="type in types" v-bind:key="type" :value="type">
+            {{ type }}
+          </option>
+        </select>
       </div>
-      <button @click.prevent="addClothesToDb">Add to Closet</button>
-      <button @click.prevent="cancelAdd">Cancel</button>
+
+      <button @click="uploadFile">Select Files</button>
+      <div v-if="urlsToUpload.length != 0" id="pendingimages">
+        <div>
+          <img v-for="url in urlsToUpload" :key="url.id" v-bind:src="url" />
+        </div>
+        <button @click.prevent="addClothesToDb">Add to Closet</button>
+        <button @click.prevent="cancelAdd">Cancel</button>
+      </div>
     </div>
   </div>
 </template>
@@ -17,8 +32,10 @@ import ClosetService from "@/services/ClosetService";
 export default {
   data() {
     return {
+      types: [],
       urlsToUpload: [],
       selectedType: "TOP",
+      showUpload: false,
     };
   },
 
@@ -63,11 +80,18 @@ export default {
           .then((err) => console.error(err));
       });
       this.urlsToUpload = [];
+      this.showUpload = false;
     },
     cancelAdd() {
       this.urlsToUpload = [];
+      this.showUpload = false;
     },
   },
+  created() {
+    ClosetService.getTypes().then(response => {
+      this.types = response.data;
+    }).catch(err => console.error(err));
+  }
 };
 </script>
 
