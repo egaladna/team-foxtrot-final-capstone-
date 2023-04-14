@@ -14,6 +14,6 @@ export default {
     },
 
     addClothingItem(clothingItem) {
-        return axios.post('/clothes', clothingItem);
+        return axios.post('/closet', clothingItem);
     }
 }

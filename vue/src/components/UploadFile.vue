@@ -1,10 +1,12 @@
 <template>
   <div>
     <!-- <UploadWidget /> -->
-    <button @click="uploadFile">Add To Closet</button>
-    <span v-for="url in urlsToUploadclass" :key="url.id" id="pendingimages">
-        <img src="url" alt="">
+    <button @click="uploadFile">Upload Files</button>
+    <span v-if="urlsToUpload" id="pendingimages">
+        <img v-for="url in urlsToUpload" :key="url.id" v-bind:src="url" alt="">
     </span>
+    <button @click.prevent="addClothesToDb">Add to Closet</button>
+    <button @click.prevent="cancelAdd">Cancel</button>
   </div>
 </template>
 
@@ -40,20 +42,25 @@ export default {
         )
         .open();
     },
-    addClothesToDb(resultsList) {
+    addClothesToDb() {
         let cloth = {
-            imgUrl: '',
-            type: this.selectedType
+            type: this.selectedType,
+            imgUrl: ''
         }
-        resultsList.forEach(result => {
-            cloth.imgUrl = result.info.secure_url;
-            ClosetService.addClothesToDb(cloth).then(response => {
+        this.urlsToUpload.forEach(url => {
+            cloth.imgUrl = url;
+            console.log(cloth);
+            ClosetService.addClothingItem(cloth).then(response => {
                 if(response.status == 200) {
                     console.log("added to db");
                 }
             }).then(err => console.error(err));
         })
+        this.urlsToUpload = [];
         this.$router.go();
+    },
+    cancelAdd() {
+        this.urlsToUpload = [];
     }
   },
 };

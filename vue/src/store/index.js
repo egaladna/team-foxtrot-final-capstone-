@@ -11,7 +11,7 @@ Vue.use(Vuex)
  */
 // const currentToken = localStorage.getItem('token')
 
-const currentToken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MTU2MDk5NH0.Ziaqi9Q3sYyBO85jBrc49ByiwaRH6CcfGLwgZInRnWJPMWo0facDzWTe2dqWd48vEjcqbYaBEIrq2V6JiP57Kg';
+const currentToken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MTU2MTQzMH0.ZWppcJGtEwmJ23U9lQfQOL18SquCVAfuTmy11Rp3v4kPr_Wk-osBheT-fhup2U2RGP8zxChJcFz-atTLIAA2mw';
 const currentUser = JSON.parse(localStorage.getItem('user'));
 
 if (currentToken != null) {
