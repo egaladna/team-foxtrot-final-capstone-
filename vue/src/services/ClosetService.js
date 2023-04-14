@@ -11,5 +11,9 @@ export default {
 
     getTypes() {
         return axios.get('/types');
+    },
+
+    addClothingItem(clothingItem) {
+        return axios.post('/clothes', clothingItem);
     }
 }
