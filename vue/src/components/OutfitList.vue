@@ -3,6 +3,7 @@
     <div>
       <h1>My Outfits</h1>
       <ShareButtons />
+      <SendEmail />
     </div>
     <div class="all-outfits">
       <div
@@ -23,6 +24,7 @@
 <script>
 import OutfitService from "../services/OutfitService";
 import ShareButtons from "../components/ShareButtons";
+import SendEmail from "../components/SendEmail";
 
 export default {
   data() {
@@ -31,7 +33,8 @@ export default {
     };
   },
   components: {
-    ShareButtons
+    ShareButtons,
+    SendEmail,
   },
   methods: {
     getAllOutfits() {
@@ -59,17 +62,16 @@ export default {
 img {
   margin: 3px;
 }
-.outfit-container{
+.outfit-container {
   margin: 20px;
   padding: 20px;
   display: flex;
-  border: solid #1B3536;
+  border: solid #1b3536;
   border-radius: 8px;
   width: fit-content;
   block-size: fit-content;
-
 }
-.all-outfits{
+.all-outfits {
   display: flex;
   flex-direction: column;
 }
