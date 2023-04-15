@@ -47,6 +47,9 @@ public class OutfitController {
         if (outfit != null && outfit.getUserId() != userId){
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Can't see outfits that aren't yours");
         }
+        if (outfit == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Outfit does not exist/contains no clothes");
+        }
         return outfit;
     }
 

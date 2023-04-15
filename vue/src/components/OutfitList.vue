@@ -5,15 +5,26 @@
     </div>
     <div class="all-outfits">
       <div
-        class="outfit-container"
+        
         v-for="outfit in outfits"
         v-bind:key="outfit.id"
       >
-        <img
-          v-for="item in outfit.itemList"
-          v-bind:key="item.id"
-          v-bind:src="item.imgUrl"
-        />
+        <router-link
+          v-bind:to="{
+            name: 'outfit-detail',
+            params: {
+              id: outfit.outfitId,
+            },
+          }"
+        >
+        <div class="outfit-container">
+            <img
+              v-for="item in outfit.itemList"
+              v-bind:key="item.id"
+              v-bind:src="item.imgUrl"
+            />
+            </div>
+        </router-link>
       </div>
     </div>
   </div>
@@ -53,18 +64,18 @@ export default {
 img {
   margin: 3px;
 }
-.outfit-container{
+.outfit-container {
   margin: 20px;
   padding: 20px;
   display: flex;
-  border: solid #1B3536;
+  border: solid #1b3536;
   border-radius: 8px;
   width: fit-content;
   block-size: fit-content;
-
 }
-.all-outfits{
+.all-outfits {
   display: flex;
   flex-direction: column;
 }
+
 </style>
