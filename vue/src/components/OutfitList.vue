@@ -2,6 +2,8 @@
   <div id="whole-component">
     <div>
       <h1>My Outfits</h1>
+      <ShareButtons />
+      <SendEmail />
     </div>
     <div class="all-outfits">
       <div
@@ -32,11 +34,18 @@
 
 <script>
 import OutfitService from "../services/OutfitService";
+import ShareButtons from "../components/ShareButtons";
+import SendEmail from "../components/SendEmail";
+
 export default {
   data() {
     return {
       outfits: [],
     };
+  },
+  components: {
+    ShareButtons,
+    SendEmail,
   },
   methods: {
     getAllOutfits() {
