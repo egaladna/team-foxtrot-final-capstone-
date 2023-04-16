@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p v-if="Object.keys(outfit).length != 0">{{outfit}}</p>
+    <p v-if="Object.keys(outfit.itemList).length != 0">{{outfit}}</p>
   </div>
 </template>
 

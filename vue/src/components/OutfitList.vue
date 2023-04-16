@@ -8,7 +8,7 @@
     <div class="all-outfits">
       <div
         
-        v-for="outfit in outfits"
+        v-for="outfit in validOutfits"
         v-bind:key="outfit.id"
       >
         <router-link
@@ -42,6 +42,13 @@ export default {
     return {
       outfits: [],
     };
+  },
+  computed: {
+    validOutfits() {
+      return this.outfits.filter(outfit => {
+        return outfit.itemList.length > 0;
+      })
+    }
   },
   components: {
     ShareButtons,
