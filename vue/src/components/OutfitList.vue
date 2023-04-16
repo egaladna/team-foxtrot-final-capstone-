@@ -1,16 +1,12 @@
 <template>
   <div id="whole-component">
-    <div>
+    <div id="page-header">
       <h1>My Outfits</h1>
       <ShareButtons />
       <SendEmail />
     </div>
     <div class="all-outfits">
-      <div
-        
-        v-for="outfit in validOutfits"
-        v-bind:key="outfit.id"
-      >
+      <div v-for="outfit in validOutfits" v-bind:key="outfit.id">
         <router-link
           v-bind:to="{
             name: 'outfit-detail',
@@ -19,13 +15,11 @@
             },
           }"
         >
-        <div class="outfit-container">
-            <img
-              v-for="item in outfit.itemList"
-              v-bind:key="item.id"
-              v-bind:src="item.imgUrl"
-            />
+          <div class="outfit-container">
+            <div v-for="item in outfit.itemList" v-bind:key="item.id">
+              <img v-bind:src="item.imgUrl" />
             </div>
+          </div>
         </router-link>
       </div>
     </div>
@@ -45,10 +39,10 @@ export default {
   },
   computed: {
     validOutfits() {
-      return this.outfits.filter(outfit => {
+      return this.outfits.filter((outfit) => {
         return outfit.itemList.length > 0;
-      })
-    }
+      });
+    },
   },
   components: {
     ShareButtons,
@@ -76,6 +70,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 img {
   margin: 3px;
@@ -88,10 +83,19 @@ img {
   border-radius: 8px;
   width: fit-content;
   block-size: fit-content;
+  display: flex;
+  flex-wrap: wrap;
 }
 .all-outfits {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
+#page-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
 </style>
