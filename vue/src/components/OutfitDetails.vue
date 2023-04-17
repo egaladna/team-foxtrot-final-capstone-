@@ -1,6 +1,8 @@
 <template>
   <div>
-    <p v-if="Object.keys(outfit.itemList).length != 0">{{outfit}}</p>
+    <div id="div-image" v-for="item in outfit.itemList" v-bind:key="item.id">
+        <img v-bind:src="item.imgUrl" >
+    </div>
   </div>
 </template>
 
@@ -10,7 +12,7 @@ import OutfitService from "../services/OutfitService";
 export default {
 data() {
     return {
-        outfit: {}
+        outfit: {},
     }
 },
 created() {
@@ -23,5 +25,10 @@ created() {
 };
 </script>
 
-<style>
+<style scoped>
+#div-image {
+    display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
 </style>

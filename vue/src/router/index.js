@@ -29,7 +29,7 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -45,7 +45,7 @@ const router = new Router({
       name: "logout",
       component: Logout,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -61,7 +61,7 @@ const router = new Router({
       name: 'closet',
       component: Closet,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -69,7 +69,7 @@ const router = new Router({
       name: 'selection',
       component: Selection,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -77,7 +77,7 @@ const router = new Router({
       name: 'outfits',
       component: Outfits,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -85,7 +85,7 @@ const router = new Router({
       name: 'outfit-detail',
       component: Outfit,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     }
   ]
