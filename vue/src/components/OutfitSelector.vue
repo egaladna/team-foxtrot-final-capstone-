@@ -114,9 +114,23 @@ export default {
       this.$store.commit("CLEAR_SELECTION");
     },
     randomGeneratorAll() {
+
+
       this.types.forEach((type) => {
-        this.randomGeneratorForType(type);
+          this.randomGeneratorForType(type);
       });
+          const topBottomOrFull = Math.floor(Math.random() * 2);
+          const selectedTop = this.selectedItems.find(item => item.type=='TOP');
+          const selectedBottom = this.selectedItems.find(item => item.type=='BOTTOM');
+          const selectedFullBody = this.selectedItems.find(item => item.type=='FULL BODY');
+          if(topBottomOrFull == 1) {
+            this.deselectItem(selectedTop);
+            this.deselectItem(selectedBottom);
+          }
+          else {
+            this.deselectItem(selectedFullBody);
+          }
+
     },
     randomGeneratorForType(type) {
       let allClothesOfType = this.getItemsForType(type);
