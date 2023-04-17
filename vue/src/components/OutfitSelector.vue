@@ -19,6 +19,10 @@
             <img :src="cloth.imgUrl" alt="" />
           </div>
         </div>
+        <button v-if="getItemsForType(type).length > 1" 
+          @click="randomGeneratorForType(type)">
+          Randomize {{ type }}
+        </button>
       </div>
     </div>
 
@@ -51,7 +55,7 @@
         style="font-size: 24px"
         v-on:click.prevent="saveOutfits"
       ></i>
-      <button @click="randomGenerator">Randomize Outfit</button>
+      <button @click="randomGeneratorAll">Randomize Outfit</button>
     </div>
   </div>
 </template>
@@ -78,9 +82,9 @@ export default {
       });
     },
     getSelectionForType(type) {
-      return this.selectedItems.find(item => {
+      return this.selectedItems.find((item) => {
         return item.type == type;
-      })
+      });
     },
     makeSelectedItem(cloth) {
       this.$store.commit("SELECT_ITEM", cloth);
@@ -109,14 +113,31 @@ export default {
       OutfitService.addOutfit(this.cleanedUpList);
       this.$store.commit("CLEAR_SELECTION");
     },
-    randomGenerator() {
+    randomGeneratorAll() {
+
+
       this.types.forEach((type) => {
-        let allClothesOfType = this.getItemsForType(type);
-        if (allClothesOfType.length > 0) {
-          let randomIndex = Math.floor(Math.random() * allClothesOfType.length);
-          this.$store.commit("SELECT_ITEM", allClothesOfType[randomIndex]);
-        }
+          this.randomGeneratorForType(type);
       });
+          const topBottomOrFull = Math.floor(Math.random() * 2);
+          const selectedTop = this.selectedItems.find(item => item.type=='TOP');
+          const selectedBottom = this.selectedItems.find(item => item.type=='BOTTOM');
+          const selectedFullBody = this.selectedItems.find(item => item.type=='FULL BODY');
+          if(topBottomOrFull == 1) {
+            this.deselectItem(selectedTop);
+            this.deselectItem(selectedBottom);
+          }
+          else {
+            this.deselectItem(selectedFullBody);
+          }
+
+    },
+    randomGeneratorForType(type) {
+      let allClothesOfType = this.getItemsForType(type);
+      if (allClothesOfType.length > 0) {
+        let randomIndex = Math.floor(Math.random() * allClothesOfType.length);
+        this.$store.commit("SELECT_ITEM", allClothesOfType[randomIndex]);
+      }
     },
   },
   data() {
@@ -135,8 +156,8 @@ export default {
     nonSelectedItems() {
       return this.clothesList.filter((cloth) => {
         let isSelected = false;
-        this.selectedItems.forEach(item => {
-          if (item.id == cloth.id){
+        this.selectedItems.forEach((item) => {
+          if (item.id == cloth.id) {
             isSelected = true;
           }
         });
