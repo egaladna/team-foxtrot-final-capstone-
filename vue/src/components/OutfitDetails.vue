@@ -1,7 +1,9 @@
 <template>
   <div>
-    <div id="div-image" v-for="item in outfit.itemList" v-bind:key="item.id">
-        <img v-bind:src="item.imgUrl" >
+    <div>
+      <div id="div-image" v-for="item in outfit.itemList" v-bind:key="item.id">
+        <img v-bind:src="item.imgUrl" />
+      </div>
     </div>
   </div>
 </template>
@@ -10,25 +12,27 @@
 import OutfitService from "../services/OutfitService";
 
 export default {
-data() {
+  data() {
     return {
-        outfit: {},
-    }
-},
-created() {
-    OutfitService.getOutfitById(this.$route.params.id).then(response => {
-        if(response.status == 200) {
-            this.outfit = response.data
+      outfit: {},
+    };
+  },
+  created() {
+    OutfitService.getOutfitById(this.$route.params.id)
+      .then((response) => {
+        if (response.status == 200) {
+          this.outfit = response.data;
         }
-    }).catch(err => console.error(err));
-}
+      })
+      .catch((err) => console.error(err));
+  },
 };
 </script>
 
 <style scoped>
-#div-image {
-    display: flex;
-  flex-wrap: wrap;
-  padding: 0 4px;
+img {
+  width: 33.33%;
+  padding: 5px;
+  float: left;
 }
 </style>

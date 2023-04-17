@@ -32,6 +32,10 @@ import ShareButtons from "../components/ShareButtons";
 import SendEmail from "../components/SendEmail";
 
 export default {
+    components: {
+    ShareButtons,
+    SendEmail,
+  },
   data() {
     return {
       outfits: [],
@@ -44,10 +48,7 @@ export default {
       });
     },
   },
-  components: {
-    ShareButtons,
-    SendEmail,
-  },
+
   methods: {
     getAllOutfits() {
       OutfitService.getOutfits()

@@ -79,13 +79,14 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-    },
+     },
     {
       path: '/myoutfits/:id',
       name: 'outfit-detail',
       component: Outfit,
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+  
       }
     }
   ]
