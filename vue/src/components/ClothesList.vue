@@ -23,16 +23,8 @@ import ClosetService from "@/services/ClosetService";
 
 export default {
   data() {
-<<<<<<< HEAD
-    return {
-      clothing: [],
-      fileInput: {}
-    };
-=======
     return {};
->>>>>>> b72926f95e861b12c65811b198d73ba13c48d22b
   },
-
   components: {
     ClothingItem,
     //UploadWidget

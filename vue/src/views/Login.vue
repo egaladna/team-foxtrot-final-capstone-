@@ -1,5 +1,8 @@
 <template>
   <section id="login">
+    <div class="center-image">
+      <img src="../assets/layered-background.png" class="image" alt="Logo">
+    </div>
     <div class="wrapper">
       <div class="box">
         <div class="form-box">
@@ -95,9 +98,19 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
 }
+.center-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+.image {
+  display: flex;
+  border: none;
+  width: 20%;
+}
 .form-input-group {
   margin-bottom: 1rem;
-  
 }
 label {
   margin-right: 0.5rem;
@@ -126,7 +139,6 @@ label {
   text-align: center;
   color: #fff;
   margin-bottom: 40px;
-  color: #f37333;
 }
 .form-input-group {
   position: relative;
@@ -143,7 +155,7 @@ label {
   border: none;
   outline: none;
   font-size: 16px;
-  color: #f37333;
+  color: #fff;
 }
 
 .form-input-group label {
@@ -156,11 +168,10 @@ label {
   font-weight: 500;
   pointer-events: none;
   transition: 0.5s;
- color: #f37333;
 }
 .form-input-group input:focus ~ label,
 .form-input-group input:valid ~ label {
-  top: -5px;
+  top: -3px;
 }
 
 .form-input-group .icon {
@@ -172,29 +183,7 @@ label {
   color: #fff;
 }
 
-.remember-forgot {
-  display: flex;
-  justify-content: space-between;
-  font-size: 14.5px;
-  color: #fff;
-  font-weight: 500;
-  margin: -15px 0 15px;
-  color: #f37333;
-}
 
-.remember-forgot label input {
-  accent-color: #fff;
-}
-
-.remember-forgot a {
-  color: #fff;
-  text-decoration: none;
-  color: #f37333;
-}
-
-.remember-forgot a:hover {
-  text-decoration: underline;
-}
 .btn {
   width: 100%;
   height: 45px;
@@ -214,14 +203,12 @@ label {
   text-align: center;
   font-weight: 500;
   margin-top: 25px;
-  color: #f37333;
 }
 
 .link p a {
   color: #fff;
   text-decoration: none;
   font-weight: 600;
-  color: #f37333;
 
 }
 
