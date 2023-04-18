@@ -3,11 +3,10 @@
     <div id="page-header">
       <h1>My Outfits</h1>
       <ShareButtons />
-      <SendEmail />
     </div>
     <div class="all-outfits">
       <div v-for="outfit in validOutfits" v-bind:key="outfit.id">
-        <router-link
+        <div
           v-bind:to="{
             name: 'outfit-detail',
             params: {
@@ -19,8 +18,9 @@
             <div v-for="item in outfit.itemList" v-bind:key="item.id">
               <img v-bind:src="item.imgUrl" />
             </div>
+            <SendEmail :outfitId="outfit.outfitId"/>
           </div>
-        </router-link>
+        </div>
       </div>
     </div>
   </div>

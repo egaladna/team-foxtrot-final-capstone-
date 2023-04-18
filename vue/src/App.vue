@@ -32,7 +32,17 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
+body {
+    background-color: #ebefd1; 
+    font-family: "Aleo", sans-serif;
+ }
+
+ .view-frame {
+  padding-top: 4%;
+  padding-bottom: 2%;
+ }
+
 #main {
   display: grid;
   grid-template-columns: 10% 80% 10%;
@@ -55,7 +65,7 @@ img {
   max-width: 400px;
   max-height: 200px;
   object-fit: contain;
-  border: none;
+  border: solid #1B3536;
 }
 
 #l-nav {
@@ -84,4 +94,5 @@ img {
   grid-area: footer;
   background-color: #be6e46;
 }
+
 </style>
