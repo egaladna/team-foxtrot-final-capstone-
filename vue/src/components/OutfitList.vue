@@ -2,7 +2,7 @@
   <div id="whole-component">
     <div id="page-header">
       <h1>My Outfits</h1>
-      <ShareButtons />
+      
     </div>
     <div class="all-outfits">
       <div v-for="outfit in validOutfits" v-bind:key="outfit.id">
@@ -18,6 +18,7 @@
             <div v-for="item in outfit.itemList" v-bind:key="item.id">
               <img v-bind:src="item.imgUrl" />
             </div>
+            <ShareButtons :outfitId="outfit.outfitId" />
             <SendEmail :outfitId="outfit.outfitId"/>
           </div>
         </div>

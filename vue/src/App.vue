@@ -1,8 +1,8 @@
 <template>
   <div id="main">
     <div id="header">
-
-      <img src="./assets/header.jpg" alt="Logo">
+      <a href="http://localhost:8080">
+      <img src="./assets/header.jpg" alt="Logo"></a>
     </div>
     <div id="l-nav">
      <TheHeader />

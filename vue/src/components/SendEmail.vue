@@ -23,7 +23,6 @@ export default {
         }, "7ZUF6vM1us8CHgfYg")
         .then(
           (result) => {
-            console.log(this.outfitId);
             console.log("SUCCESS!", result.text);
           },
           (error) => {

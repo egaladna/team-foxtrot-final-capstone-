@@ -1,26 +1,57 @@
 <template>
-  <div id="login">
-    <form @submit.prevent="login">
-      <h1 >Please Sign In</h1>
-      <div role="alert" v-if="invalidCredentials">
-        Invalid username and password!
+  <section id="login">
+    <div class="wrapper">
+      <div class="box">
+        <div class="form-box">
+          <div class="title">
+            <h1>Login</h1>
+          </div>
+          <form @submit.prevent="login">
+            <div role="alert" v-if="invalidCredentials">
+              Invalid username and password!
+            </div>
+            <div role="alert" v-if="this.$route.query.registration">
+              Thank you for registering, please sign in.
+            </div>
+            <div class="form-input-group">
+              <span class="icon"><box-icon name="user"></box-icon></span>
+              <input
+                type="text"
+                id="username"
+                v-model="user.username"
+                required
+                autofocus
+              />
+              <label for="username"> Username</label>
+            </div>
+            <div class="form-input-group">
+              <span class="icon"><box-icon name="lock"></box-icon></span>
+              <input
+                type="password"
+                id="password"
+                v-model="user.password"
+                required
+              />
+              <label for="password"> Password</label>
+            </div>
+            <div class="remember-forgot">
+              <label for="Remember me"
+                ><input type="checkbox" />Remember Me</label
+              >
+              <a href="#">Forgot password?</a>
+            </div>
+            <button type="submit" class="btn">Sign in</button>
+            <div class="link">
+              <p>
+                Need an account?
+                <router-link :to="{ name: 'register' }">Sign up</router-link>
+              </p>
+            </div>
+          </form>
+        </div>
       </div>
-      <div role="alert" v-if="this.$route.query.registration">
-        Thank you for registering, please sign in.
-      </div>
-      <div class="form-input-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" v-model="user.username" required autofocus />
-      </div>
-      <div class="form-input-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" v-model="user.password" required />
-      </div>
-      <button type="submit">Sign in</button>
-      <p>
-      <router-link :to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
-    </form>
-  </div>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -33,39 +64,175 @@ export default {
     return {
       user: {
         username: "",
-        password: ""
+        password: "",
       },
-      invalidCredentials: false
+      invalidCredentials: false,
     };
   },
   methods: {
     login() {
       authService
         .login(this.user)
-        .then(response => {
+        .then((response) => {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
             this.$router.push("/");
           }
         })
-        .catch(error => {
+        .catch((error) => {
           const response = error.response;
 
           if (response.status === 401) {
             this.invalidCredentials = true;
           }
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
+#login {
+  padding-top: 400px;
+  padding-bottom: 400px;
+  background: url("../assets/background2.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 .form-input-group {
   margin-bottom: 1rem;
+  
 }
 label {
   margin-right: 0.5rem;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 450px;
+  height: 100%;
+  background: transparent;
+  backdrop-filter: blur(15px);
+  box-shadow: -1px 0 10px rgba(0, 0, 0, .2);
+  border-left: 2px solid rgba(255,255,255, .1);
+  z-index: 100;
+  padding: 0 40px;
+}
+.wrapper .box {
+  width: 100%;
+  
+}
+.title {
+  font-size: 32px;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 40px;
+  color: #f37333;
+}
+.form-input-group {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 30px 0;
+  border-bottom: 2px solid #fff;
+}
+
+.form-input-group input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #fff;
+}
+
+.form-input-group label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #fff;
+  font-weight: 500;
+  pointer-events: none;
+  transition: 0.5s;
+ color: #f37333;
+}
+.form-input-group input:focus ~ label,
+.form-input-group input:valid ~ label {
+  top: -5px;
+}
+
+.form-input-group .icon {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 19px;
+  color: #fff;
+}
+
+.remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14.5px;
+  color: #fff;
+  font-weight: 500;
+  margin: -15px 0 15px;
+  color: #f37333;
+}
+
+.remember-forgot label input {
+  accent-color: #fff;
+}
+
+.remember-forgot a {
+  color: #fff;
+  text-decoration: none;
+  color: #f37333;
+}
+
+.remember-forgot a:hover {
+  text-decoration: underline;
+}
+.btn {
+  width: 100%;
+  height: 45px;
+  background: #fff;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-size: 16px;
+  color: #222;
+  font-weight: 600;
+}
+ .link {
+  font-size: 14.5px;
+  color: #fff;
+  text-align: center;
+  font-weight: 500;
+  margin-top: 25px;
+  color: #f37333;
+}
+
+.link p a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  color: #f37333;
+
+}
+
+.link p a:hover {
+  text-decoration: underline;
+
 }
 </style>
