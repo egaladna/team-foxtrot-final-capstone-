@@ -1,8 +1,8 @@
 <template>
   <div id="main">
     <div id="header">
-
-      <img src="./assets/header.jpg" alt="Logo">
+      <a href="http://localhost:8080">
+      <img src="./assets/header.jpg" alt="Logo"></a>
     </div>
     <div id="l-nav">
      <TheHeader />
@@ -32,7 +32,27 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
+#clothingList-clothing-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+#clothingList-closet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body {
+    background-color: #ebefd1; 
+    font-family: "Aleo", sans-serif;
+ }
+
+ .view-frame {
+  padding-top: 4%;
+  padding-bottom: 2%;
+ }
+
 #main {
   display: grid;
   grid-template-columns: 10% 80% 10%;
@@ -55,7 +75,7 @@ img {
   max-width: 400px;
   max-height: 200px;
   object-fit: contain;
-  border: none;
+  border: solid #1B3536;
 }
 
 #l-nav {
@@ -84,4 +104,5 @@ img {
   grid-area: footer;
   background-color: #be6e46;
 }
+
 </style>

@@ -34,5 +34,6 @@ img {
   width: 33.33%;
   padding: 5px;
   float: left;
+  height: auto;
 }
 </style>

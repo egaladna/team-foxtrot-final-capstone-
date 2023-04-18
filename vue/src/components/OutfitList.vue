@@ -2,13 +2,16 @@
   <div id="whole-component">
     <div id="page-header">
       <h1>My Outfits</h1>
+
       <button @click="drawItemsToCanvas">Draw Items</button>
       <ShareButtons />
       <SendEmail />
+
+
     </div>
     <div class="all-outfits">
       <div v-for="outfit in validOutfits" v-bind:key="outfit.id">
-        <router-link
+        <div
           v-bind:to="{
             name: 'outfit-detail',
             params: {
@@ -31,8 +34,10 @@
                 v-bind:src="item.imgUrl"
               />
             </div>
+            <ShareButtons :outfitId="outfit.outfitId" />
+            <SendEmail :outfitId="outfit.outfitId"/>
           </div>
-        </router-link>
+        </div>
       </div>
     </div>
   </div>
