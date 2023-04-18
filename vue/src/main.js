@@ -15,12 +15,11 @@ Vue.config.productionTip = false
 
 axios.defaults.baseURL = process.env.VUE_APP_REMOTE_API;
 
-Vue.use(cloudinary, {
+Vue.use(VueSocialSharing, cloudinary, {
   configuration: {
     cloudName: 'dlnxljpbd',
     secure: false
-  },
-  VueSocialSharing
+  }
 });
 
 new Vue({

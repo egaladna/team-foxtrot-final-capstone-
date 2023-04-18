@@ -43,9 +43,6 @@ public class JdbcOutfitDao implements OutfitDao {
         while(rows.next()){
             outfitClothes.add(jdbcClothesDao.getClothingItemById(rows.getInt("item_id")));
         }
-        if(outfitClothes.size() == 0) {
-            return null;
-        }
         outfit.setOutfitId(outfitId);
         outfit.setUserId(userId);
         outfit.setItemList(outfitClothes);
