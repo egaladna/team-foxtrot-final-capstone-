@@ -25,7 +25,7 @@ export default {
     sendEmail() {
       emailjs
         .send("digital_closet19", "template_etxx6g9", {
-          user_name: "tommy pickles",
+          user_name: "user",
           to_email: this.user_email,
           id: this.outfitId
         }, "7ZUF6vM1us8CHgfYg")
