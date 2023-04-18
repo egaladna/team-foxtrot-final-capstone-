@@ -34,12 +34,6 @@
               />
               <label for="password"> Password</label>
             </div>
-            <div class="remember-forgot">
-              <label for="Remember me"
-                ><input type="checkbox" />Remember Me</label
-              >
-              <a href="#">Forgot password?</a>
-            </div>
             <button type="submit" class="btn">Sign in</button>
             <div class="link">
               <p>
@@ -149,7 +143,7 @@ label {
   border: none;
   outline: none;
   font-size: 16px;
-  color: #fff;
+  color: #f37333;
 }
 
 .form-input-group label {

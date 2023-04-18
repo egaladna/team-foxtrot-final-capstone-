@@ -9,16 +9,16 @@
         Facebook
       </ShareNetwork>
     </button>
-        <button>
+    <button>
       <ShareNetwork
         network="twitter"
-        url= "http://localhost:8080/myoutfits/"
+        url="http://localhost:8080/myoutfits/"
         title="Look at my Foxtrot Closet outfit!"
       >
         Twitter
       </ShareNetwork>
     </button>
-    
+
     <button>
       <ShareNetwork
         network="pinterest"
