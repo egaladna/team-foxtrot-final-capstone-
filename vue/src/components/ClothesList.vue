@@ -1,7 +1,7 @@
 <template>
-  <div id="closet">
+  <div id="clothingList-closet">
     <h1>My Closet</h1>
-    <div id="clothing-items">
+    <div id="clothingList-clothing-items">
       <div v-for="cloth in displayedClothes" v-bind:key="cloth.id">
         <ClothingItem v-bind:cloth="cloth" />
         <i
@@ -69,14 +69,5 @@ export default {
 </script>
 
 <style>
-#clothing-items {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-#closet {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+
 </style>
