@@ -33,6 +33,16 @@ export default {
 
 
 <style>
+#clothingList-clothing-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+#clothingList-closet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 body {
     background-color: #ebefd1; 
     font-family: "Aleo", sans-serif;
