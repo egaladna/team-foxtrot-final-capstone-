@@ -17,7 +17,6 @@ INSERT INTO clothes (type, img_url, user_id) VALUES ('FULL BODY', 'https://img.l
 INSERT INTO clothes (type, img_url, user_id) VALUES ('BOTTOM', 'https://img.ltwebstatic.com/images3_pi/2021/08/04/162807432750b234398e1fb79074240a778d65d3e6_thumbnail_405x552.webp', 1);
 INSERT INTO clothes (type, img_url, user_id) VALUES ('BOTTOM', 'https://img.ltwebstatic.com/images3_pi/2021/09/13/16315208494d735f4c7dd06c1348d7e573f5a9c47d_thumbnail_900x.webp', 1);
 INSERT INTO clothes (type, img_url, user_id) VALUES ('BOTTOM', 'https://img.ltwebstatic.com/images3_pi/2022/08/22/166115452625db78eff5c1d0b01bdd7d7283d7da71_thumbnail_900x.webp', 1);
-INSERT INTO clothes (type, img_url, user_id) VALUES ('TOP', 'https://img.ltwebstatic.com/images3_pi/2022/11/16/166859174215d9bc0064f7cd2454529c83bdfd9b15.webp', 1);
 INSERT INTO clothes (type, img_url, user_id) VALUES ('TOP', 'https://img.ltwebstatic.com/images3_pi/2022/09/20/16636443353471d011eb2d777b465d2fee88a04fe9_thumbnail_900x.webp', 1);
 INSERT INTO clothes (type, img_url, user_id) VALUES ('OUTERWEAR', 'https://img.ltwebstatic.com/images3_pi/2020/12/07/160732220760729c827f2720210041d689de0582ac_thumbnail_405x552.webp', 1);
 INSERT INTO clothes (type, img_url, user_id) VALUES ('OUTERWEAR', 'https://img.ltwebstatic.com/images3_pi/2021/11/11/1636595671dddb386658501085f6323ee1407577d3_thumbnail_405x552.webp', 1);

@@ -4,6 +4,7 @@ import router from './router/index'
 import store from './store/index'
 import axios from 'axios'
 import cloudinary from 'cloudinary-vue'
+import VueSocialSharing from 'vue-social-sharing'
  
 
 
@@ -18,7 +19,8 @@ Vue.use(cloudinary, {
   configuration: {
     cloudName: 'dlnxljpbd',
     secure: false
-  }
+  },
+  VueSocialSharing
 });
 
 new Vue({

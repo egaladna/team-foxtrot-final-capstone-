@@ -8,6 +8,7 @@ import store from '../store/index'
 import Closet from '../views/Closet.vue'
 import Selection from '../views/Selection.vue'
 import Outfits from '../views/Outfits.vue'
+import Outfit from '../views/Outfit.vue'
 Vue.use(Router)
 
 /**
@@ -79,6 +80,14 @@ const router = new Router({
         requiresAuth: false
       }
     },
+    {
+      path: '/myoutfits/:id',
+      name: 'outfit-detail',
+      component: Outfit,
+      meta: {
+        requiresAuth: false
+      }
+    }
   ]
 })
 
