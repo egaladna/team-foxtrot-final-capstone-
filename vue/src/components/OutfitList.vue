@@ -3,7 +3,7 @@
     <div id="page-header">
       <h1>My Outfits</h1>
 
-      <button @click="drawItemsToCanvas">Draw Items</button>
+      <!-- <button @click="drawItemsToCanvas">Draw Items</button> -->
       <ShareButtons />
       <SendEmail />
     </div>
@@ -139,10 +139,11 @@ export default {
     ClosetService.getTypes()
       .then((response) => {
         this.types = response.data;
+        this.drawItemsToCanvas();
       })
       .catch((err) => console.error(err));
   },
-  beforeMount() {
+  mounted() {
     this.drawItemsToCanvas();
   },
 };
