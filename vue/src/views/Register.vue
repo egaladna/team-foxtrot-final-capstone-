@@ -74,6 +74,9 @@ export default {
 </script>
 
 <style scoped>
+body {
+  background-color: brown;
+}
 .form-input-group {
   margin-bottom: 1rem;
 }

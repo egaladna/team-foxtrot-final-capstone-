@@ -1,7 +1,7 @@
 <template>
   <section id="login">
     <div class="center-image">
-      <img src="../assets/layered-background.png" class="image" alt="Logo">
+      <img class="image" src="../assets/layered-background.png"  alt="Logo">
     </div>
     <div class="wrapper">
       <div class="box">
@@ -100,6 +100,7 @@ export default {
 }
 .center-image {
   display: flex;
+  
   justify-content: center;
   align-items: center;
   border: none;
