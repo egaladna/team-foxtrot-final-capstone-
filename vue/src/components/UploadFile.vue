@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <UploadWidget /> -->
     <button v-if="!showUpload" @click="showUpload = true">Add Clothes</button>
     <div v-if="showUpload" class="uploading-display">
       <div>

@@ -7,6 +7,7 @@ public class ClothingItem {
     private String imgUrl;
     private int userId;
     private int id;
+    private String color;
 
     public ClothingItem(String type, String imgUrl, int userId, int id) {
         this.type = type;
@@ -17,6 +18,14 @@ public class ClothingItem {
 
     public ClothingItem() {
 
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public String getType() {

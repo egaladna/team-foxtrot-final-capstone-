@@ -28,7 +28,22 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
+#clothingList-clothing-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+#clothingList-closet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body {
+  background: url("./assets/background2.png");
+    /* background-color: #ebefd1;  */
+    font-family: "Aleo", sans-serif;
+ }
 
 
 /* #main {
@@ -45,9 +60,8 @@ export default {
   grid-area: header;
   display: flex;
   justify-content: center;
-  background-color: #001e10;
-} */
-/* img {
+}
+img {
   display: block;
   width: auto;
   height: auto;
@@ -61,13 +75,12 @@ export default {
   grid-area: l-nav;
   display: flex;
   justify-content: center;
-  background-color: #001e10;
   padding-top: 50px;
-} */
+  background-color: #f37333;
+}
 
 /* #r-nav {
   grid-area: r-nav;
-  background-color: #001e10;
  
 } */
 
