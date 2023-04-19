@@ -11,4 +11,5 @@ public interface ClothesDao {
     ClothingItem getClothingItemById(int itemId);
     void deleteClothingItem(int itemId);
     List<String> listTypes();
+    ClothingItem updateClothingItem(ClothingItem cloth);
 }
