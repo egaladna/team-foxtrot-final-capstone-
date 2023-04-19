@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <div class="postion">
-      <a href="http://localhost:8080">
-        <img src="../assets/logo.png" class="logo" alt="Logo"
-      /></a>
-    </div>
+  <div class="postion">
     <header class="header">
+      <a href="http://localhost:8080">
+      <img src="../assets/logo4.png" class="logo" alt="Logo"
+    /></a>
       <nav id="nav">
         <router-link v-if="$route.name != 'home'" v-bind:to="{ name: 'home' }"
           >Home
@@ -49,29 +47,26 @@ export default {};
 <style>
 .header {
   display: flex;
-  align-items: flex-end;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 20px 100px;
+  padding: 20px 130px;
   background: transparent;
-  justify-content: right;
+  justify-content: space-between;
   align-items: center;
   z-index: 99;
 }
-.position {
-  display: flex;
-  margin-left: 0px;
-  
-}
+
 .logo {
   display: flex;
   align-items: flex-start;
   border: none;
   cursor: pointer;
-  width: 15%;
-  margin-left: 200px;
-  margin-bottom: 60px;
+  justify-content: stretch;
+  width: 100px;
+  /* margin-left: 200px;
+  margin-bottom: 60px; */
 }
 .header .login {
   position: relative;
@@ -104,5 +99,6 @@ export default {};
 #nav a:hover {
   background-color: #ebefd1;
   color: #001e10;
+  cursor: copy;
 }
 </style>

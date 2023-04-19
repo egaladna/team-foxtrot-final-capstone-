@@ -1,4 +1,5 @@
 <template>
+<section class="clear-wrapper">
   <div id="whole-selector-page">
     <div
       id="selector-area"
@@ -25,7 +26,7 @@
         </button>
       </div>
     </div>
-
+   
     <div
       id="selected-items-area"
       @drop="onSelectDrop($event)"
@@ -39,7 +40,7 @@
         <img :src="item.imgUrl" alt="">
       </div> -->
 
-      <p>Selected Items</p>
+      <p>Mix & Match</p>
       <div
         class="selectedItemsDiv"
         v-for="type in types"
@@ -58,6 +59,7 @@
       <button @click="randomGeneratorAll">Randomize Outfit</button>
     </div>
   </div>
+  </section>
 </template>
 
 <script>
@@ -183,9 +185,41 @@ export default {
 </script>
 
 <style>
+.clear-wrapper{
+  display: flex;
+  justify-content: center ;
+  position: absolute;
+  top: 120px;
+  bottom: 30px;
+  left: 140px;
+  right: 140px;
+  box-shadow: -1px 0 10px rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  backdrop-filter: blur(15px);
+  overflow: auto;
+}
+.each-type p{
+  font-size: 25px;
+  color: #1b3536;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  font-weight: 600px;
+
+}
+.each-type p:hover{
+  color: #1b3536;
+  cursor: copy;
+}
+#selector-area{
+  padding-right: 200px;
+
+}
 #whole-selector-page {
   display: flex;
   justify-content: space-between;
+  margin: 0 auto;
+  max-width: 800px; 
 }
 #all-images-for-type {
   display: flex;
@@ -196,5 +230,22 @@ export default {
   border-radius: 8px;
   padding-left: 5%;
   padding-right: 5%;
+  overflow: auto;
+  box-shadow: -1px 0 10px rgba(0, 0, 0, 0.7);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px);
+  top: 90px;
+  border-radius: 25px;
+  
+}
+#selected-items-area p{
+  font-size: 25px;
+  color: #EBEFD1;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+#selected-items-area p:hover {
+  color: #1b3536;
+  cursor: copy;
 }
 </style>

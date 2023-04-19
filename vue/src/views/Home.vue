@@ -1,9 +1,7 @@
 <template>
   <div class="view-frame">
-    <div class="wrapper">
     <h1>Welcome</h1>
     <p>You must be authenticated to see this</p>
-    </div>
   </div>
 </template>
 
@@ -16,7 +14,7 @@ export default {
 <style scoped>
 
 
-.view-frame {
+/* .view-frame {
    display: flex;
    padding-top: 600px;
    padding-bottom: 600px;
@@ -25,6 +23,11 @@ export default {
    background-repeat: no-repeat;
    background-position: center center;
 
+} */
+.view-frame {
+  display: flex;
+  padding-top: 50vh;
+  justify-content: center;
 }
 
 h1 {

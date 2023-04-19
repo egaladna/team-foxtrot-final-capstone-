@@ -72,10 +72,16 @@ export default {
 } */
 
 #router {
- padding-top: 100;
  justify-content: center;
+ background: url("./assets/background2.png");
+ background-size: cover;
+ background-repeat: no-repeat;
+ background-position: center;
+ height: 100vh;
   
-  
+}
+body {
+ 
 }
 
 #l-nav {

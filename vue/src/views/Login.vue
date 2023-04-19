@@ -1,7 +1,7 @@
 <template>
   <section id="login">
     <div class="center-image">
-      <img class="image" src="../assets/layered-background.png"  alt="Logo">
+      <img class="image" src="../assets/logo3.png" alt="Logo" />
     </div>
     <div class="wrapper">
       <div class="box">
@@ -89,26 +89,31 @@ export default {
 };
 </script>
 
-<style scoped>
-#login {
+<style >
+/* #login {
   padding-top: 400px;
   padding-bottom: 400px;
   background: url("../assets/background2.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-}
+} */
 .center-image {
   display: flex;
-  
   justify-content: center;
   align-items: center;
   border: none;
+  
 }
 .image {
   display: flex;
   border: none;
-  width: 20%;
+  width: 40%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+  margin-right: 200px;
+  
 }
 .form-input-group {
   margin-bottom: 1rem;
@@ -126,19 +131,18 @@ label {
   height: 100%;
   background: transparent;
   backdrop-filter: blur(15px);
-  box-shadow: -1px 0 10px rgba(0, 0, 0, .2);
-  border-left: 2px solid rgba(255,255,255, .1);
+  box-shadow: -1px 0 10px rgba(0, 0, 0, 0.2);
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
   z-index: 100;
   padding: 0 40px;
 }
 .wrapper .box {
   width: 100%;
-  
 }
 .title {
   font-size: 32px;
   text-align: center;
-  color: #fff;
+  color: #EBEFD1;
   margin-bottom: 40px;
 }
 .form-input-group {
@@ -146,7 +150,7 @@ label {
   width: 100%;
   height: 50px;
   margin: 30px 0;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid #EBEFD1;
 }
 
 .form-input-group input {
@@ -155,8 +159,8 @@ label {
   background: transparent;
   border: none;
   outline: none;
-  font-size: 16px;
-  color: #fff;
+  font-size: 18px;
+  color: black;
 }
 
 .form-input-group label {
@@ -165,7 +169,7 @@ label {
   left: 0;
   transform: translateY(-50%);
   font-size: 16px;
-  color: #fff;
+  color: #EBEFD1;
   font-weight: 500;
   pointer-events: none;
   transition: 0.5s;
@@ -184,7 +188,6 @@ label {
   color: #fff;
 }
 
-
 .btn {
   width: 100%;
   height: 45px;
@@ -198,7 +201,7 @@ label {
   color: #222;
   font-weight: 600;
 }
- .link {
+.link {
   font-size: 14.5px;
   color: #fff;
   text-align: center;
@@ -207,14 +210,12 @@ label {
 }
 
 .link p a {
-  color: #fff;
+  color: #be6346;
   text-decoration: none;
   font-weight: 600;
-
 }
 
 .link p a:hover {
   text-decoration: underline;
-
 }
 </style>

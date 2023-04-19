@@ -1,4 +1,5 @@
 <template>
+<section class="wrappers">
   <div id="clothingList-closet">
     <h1>My Closet</h1>
     <div id="clothingList-clothing-items">
@@ -12,13 +13,15 @@
         ></i>
       </div>
     </div>
+    <UploadFile />
   </div>
+  </section>
 </template>
 
 <script>
 import ClothingItem from "@/components/ClothingItem";
 import ClosetService from "@/services/ClosetService";
-// import UploadWidget from "@/components/UploadWidget.vue"
+import UploadFile from "@/components/UploadFile"
 
 
 export default {
@@ -27,6 +30,7 @@ export default {
   },
   components: {
     ClothingItem,
+    UploadFile
     //UploadWidget
   },
 
@@ -68,6 +72,39 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.wrappers {
+  display: flex;
+  justify-content: center ;
+  position: absolute;
+  top: 120px;
+  bottom: 100px;
+  left: 350px;
+  right: 350px;
+  box-shadow: -1px 0 10px rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  backdrop-filter: blur(10px);
+  overflow: auto;
+}
+#clothingList-closet h1{
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  z-index: 100;
+  color: #EBEFD1;
+  font-size: 30px;
+  
+}
+
+
+#clothingList-clothing-items {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: baseline;
+  margin-top: 50px;
+  
+}
 
 </style>
