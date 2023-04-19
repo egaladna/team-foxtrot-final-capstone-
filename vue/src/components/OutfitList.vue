@@ -2,8 +2,6 @@
   <div id="whole-component">
     <div id="page-header">
       <h1>My Outfits</h1>
-
-      <button @click="drawItemsToCanvas">Draw Items</button>
       <ShareButtons />
       <SendEmail />
     </div>
@@ -30,10 +28,19 @@
               <img
                 :id="getImageId(outfit.outfitId, item.type)"
                 v-bind:src="item.imgUrl"
+                crossorigin="anonymous"
               />
             </div>
-            <ShareButtons :outfitId="outfit.outfitId" />
-            <SendEmail :outfitId="outfit.outfitId" />
+
+            <button @click.prevent="getDataUrl(outfit)">
+              Share This Outfit!
+            </button>
+            <ShareButtons v-if="sharingOutfit" :outfitId="outfit.outfitId" />
+            <SendEmail
+              v-if="sharingOutfit"
+              :outfitId="outfit.outfitId"
+              :canvasDataUrl="canvasDataUrl"
+            />
           </div>
         </div>
       </div>
@@ -56,6 +63,8 @@ export default {
     return {
       outfits: [],
       types: [],
+      canvasDataUrl: "",
+      sharingOutfit: false,
     };
   },
   computed: {
@@ -131,6 +140,13 @@ export default {
         });
       });
     },
+    getDataUrl(outfit) {
+      this.sharingOutfit = true;
+      let canvas = document.getElementById(this.getCanvasId(outfit.outfitId));
+      this.canvasDataUrl = canvas.toDataURL("image/jpeg", 0.1);
+      console.log(this.canvasDataUrl);
+      
+    },
   },
   created() {
     this.getAllOutfits();
@@ -139,10 +155,11 @@ export default {
     ClosetService.getTypes()
       .then((response) => {
         this.types = response.data;
+        this.drawItemsToCanvas();
       })
       .catch((err) => console.error(err));
   },
-  beforeMount() {
+  mounted() {
     this.drawItemsToCanvas();
   },
 };
@@ -155,7 +172,7 @@ export default {
   align-items: center;
   justify-content: center;
 }
-canvas{
+canvas {
   width: 50vw;
 }
 img {

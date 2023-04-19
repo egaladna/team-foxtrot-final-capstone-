@@ -26,6 +26,7 @@
 <script>
 import ClosetService from "@/services/ClosetService";
 
+
 export default {
   data() {
     return {
@@ -37,7 +38,6 @@ export default {
   },
   methods: {
     uploadFile() {
-      console.log("My Name");
       window.cloudinary.createUploadWidget(
         {
           cropping: true,
