@@ -26,7 +26,9 @@ import UploadFile from "@/components/UploadFile"
 
 export default {
   data() {
-    return {};
+    return {
+        
+    };
   },
   components: {
     ClothingItem,
@@ -58,6 +60,7 @@ export default {
           .catch((err) => console.error(err));
       }
     },
+
   },
 
   computed: {

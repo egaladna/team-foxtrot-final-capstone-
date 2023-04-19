@@ -20,14 +20,15 @@ export default {
       user_email: ''
     }
   },
-  props: ["outfitId"],
+  props: ["outfitId", "canvasDataUrl"],
   methods: {
     sendEmail() {
       emailjs
         .send("digital_closet19", "template_etxx6g9", {
           user_name: "user",
           to_email: this.user_email,
-          id: this.outfitId
+          id: this.outfitId,
+          imgUrl: this.canvasDataUrl
         }, "7ZUF6vM1us8CHgfYg")
         .then(
           (result) => {

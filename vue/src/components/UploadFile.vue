@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <UploadWidget /> -->
     <button v-if="!showUpload" @click="showUpload = true">Add Clothes</button>
     <div v-if="showUpload" class="uploading-display">
       <div>
@@ -27,6 +26,7 @@
 <script>
 import ClosetService from "@/services/ClosetService";
 
+
 export default {
   data() {
     return {
@@ -38,7 +38,6 @@ export default {
   },
   methods: {
     uploadFile() {
-      console.log("My Name");
       window.cloudinary.createUploadWidget(
         {
           cropping: true,
@@ -59,6 +58,7 @@ export default {
           console.log(this.urlsToUpload);
         }
       ).open();
+      
     },
     addClothesToDb() {
       let cloth = {

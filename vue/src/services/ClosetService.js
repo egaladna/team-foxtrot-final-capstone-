@@ -15,5 +15,13 @@ export default {
 
     addClothingItem(clothingItem) {
         return axios.post('/closet', clothingItem);
+    },
+
+    updateClothingItem(clothingItem) {
+        return axios.put(`/closet/${clothingItem.id}`, clothingItem);
+    },
+
+    getColors() {
+        return axios.get('/colors');
     }
 }

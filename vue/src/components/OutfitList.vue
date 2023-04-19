@@ -2,12 +2,8 @@
   <div id="whole-component">
     <div id="page-header">
       <h1>My Outfits</h1>
-
-      <button @click="drawItemsToCanvas">Draw Items</button>
       <ShareButtons />
       <SendEmail />
-
-
     </div>
     <div class="all-outfits">
       <div v-for="outfit in validOutfits" v-bind:key="outfit.id">
@@ -22,8 +18,8 @@
           <div class="outfit-container">
             <canvas
               :id="getCanvasId(outfit.outfitId)"
-              width="500"
-              height="300"
+              :width="1200"
+              :height="getHeight(outfit)"
               style="border: 1px solid #d3d3d3"
             >
               Your browser does not support the HTML canvas tag.</canvas
@@ -32,10 +28,19 @@
               <img
                 :id="getImageId(outfit.outfitId, item.type)"
                 v-bind:src="item.imgUrl"
+                crossorigin="anonymous"
               />
             </div>
-            <ShareButtons :outfitId="outfit.outfitId" />
-            <SendEmail :outfitId="outfit.outfitId"/>
+
+            <button @click.prevent="getDataUrl(outfit)">
+              Share This Outfit!
+            </button>
+            <ShareButtons v-if="sharingOutfit" :outfitId="outfit.outfitId" />
+            <SendEmail
+              v-if="sharingOutfit"
+              :outfitId="outfit.outfitId"
+              :canvasDataUrl="canvasDataUrl"
+            />
           </div>
         </div>
       </div>
@@ -58,12 +63,14 @@ export default {
     return {
       outfits: [],
       types: [],
+      canvasDataUrl: "",
+      sharingOutfit: false,
     };
   },
   computed: {
     validOutfits() {
       return this.outfits.filter((outfit) => {
-        return outfit.itemList.length > 0;
+        return outfit.itemList.length > 1;
       });
     },
   },
@@ -78,6 +85,9 @@ export default {
         })
         .catch((err) => console.error(err));
     },
+    getHeight(outfit) {
+      return outfit.itemList.length < 4 ? 800 : 1600;
+    },
     getCanvasId(outfitId) {
       return outfitId + "outfitCanvas";
     },
@@ -88,7 +98,7 @@ export default {
       let containsType = false;
       outfit.itemList.forEach((item) => {
         if (item.type == type) {
-          console.log(outfit.outfitId + " John Said " + type)
+          console.log(outfit.outfitId + " John Said " + type);
           containsType = true;
         }
       });
@@ -100,8 +110,9 @@ export default {
         let c = document.getElementById(this.getCanvasId(outfit.outfitId));
         console.log(this.getCanvasId(outfit.outfitId));
         let ctx = c.getContext("2d");
-        let x = 5;
-        let y = 5;
+        let x = 0;
+        let y = 0;
+        let count = 0;
         this.types.forEach((type) => {
           console.log("for each type");
           console.log(this.outfitContainsType(outfit, type));
@@ -110,12 +121,31 @@ export default {
             console.log("drawing " + imgId);
             let img = document.getElementById(imgId);
             console.log(img);
-            ctx.drawImage(img, x, y, 80, 80);
-            x += 80;
-            y += 10;
+
+            if (count == 1) {
+              x = 600;
+            }
+            if (count == 2) {
+              x = 0;
+              y = 800;
+            }
+            if (count == 3) {
+              x = 600;
+              y = 800;
+            }
+
+            ctx.drawImage(img, x, y, 600, 800);
+            count++;
           }
         });
       });
+    },
+    getDataUrl(outfit) {
+      this.sharingOutfit = true;
+      let canvas = document.getElementById(this.getCanvasId(outfit.outfitId));
+      this.canvasDataUrl = canvas.toDataURL("image/jpeg", 0.1);
+      console.log(this.canvasDataUrl);
+      
     },
   },
   created() {
@@ -125,12 +155,13 @@ export default {
     ClosetService.getTypes()
       .then((response) => {
         this.types = response.data;
+        this.drawItemsToCanvas();
       })
       .catch((err) => console.error(err));
   },
-  beforeMount() {
+  mounted() {
     this.drawItemsToCanvas();
-  }
+  },
 };
 </script>
 
@@ -141,9 +172,12 @@ export default {
   align-items: center;
   justify-content: center;
 }
+canvas {
+  width: 50vw;
+}
 img {
   margin: 3px;
-  display:none;
+  display: none;
 }
 .outfit-container {
   margin: 20px;

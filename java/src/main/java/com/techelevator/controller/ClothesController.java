@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
@@ -34,6 +35,14 @@ public class ClothesController {
         return clothesDao.addClothingItem(clothingItem);
     }
 
+    @RequestMapping(path="closet/{id}", method=RequestMethod.PUT)
+    public ClothingItem updateItemById(@Valid @RequestBody ClothingItem clothingItem, @PathVariable("id") int id) {
+        if (clothesDao.getClothingItemById(id) == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Clothing item not found.");
+        }
+        return clothesDao.updateClothingItem(clothingItem);
+    }
+
     @RequestMapping(path="/closet/{id}", method= RequestMethod.DELETE)
     public void deleteItemById(@PathVariable int id, Principal principal) {
         ClothingItem cloth = clothesDao.getClothingItemById(id);
@@ -47,5 +56,10 @@ public class ClothesController {
     @RequestMapping(path = "/types", method = RequestMethod.GET)
     public List<String> listTypes() {
         return clothesDao.listTypes();
+    }
+
+    @RequestMapping(path = "/colors", method = RequestMethod.GET)
+    public List<String> listColors() {
+        return clothesDao.listColors();
     }
 }
