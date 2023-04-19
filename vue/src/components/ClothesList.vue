@@ -20,11 +20,11 @@ import ClothingItem from "@/components/ClothingItem";
 import ClosetService from "@/services/ClosetService";
 // import UploadWidget from "@/components/UploadWidget.vue"
 
+
 export default {
   data() {
     return {};
   },
-
   components: {
     ClothingItem,
     //UploadWidget

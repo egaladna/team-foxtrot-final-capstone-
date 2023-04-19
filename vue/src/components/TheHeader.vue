@@ -1,38 +1,108 @@
 <template>
   <div>
-      <nav id = "nav">
-           <router-link v-if="$route.name != 'home'" v-bind:to="{ name: 'home' }">Home </router-link>
-           <router-link v-if="$route.name != 'closet' " v-bind:to="{ name: 'closet' }">My Closet </router-link>
-           <router-link v-if="$route.name == 'closet' || $route.name == 'outfits' " v-bind:to="{ name: 'selection' }">Choose Outfit </router-link>
-           <router-link v-if="$route.name == 'closet' || $route.name == 'selection' " v-bind:to="{ name: 'outfits' }">My Outfits </router-link>
-           <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+    <div class="postion">
+      <a href="http://localhost:8080">
+        <img src="../assets/logo.png" class="logo" alt="Logo"
+      /></a>
+    </div>
+    <header class="header">
+      <nav id="nav">
+        <router-link v-if="$route.name != 'home'" v-bind:to="{ name: 'home' }"
+          >Home
+        </router-link>
+        <router-link
+          v-if="$route.name != 'closet'"
+          v-bind:to="{ name: 'closet' }"
+          >My Closet
+        </router-link>
+        <router-link
+          v-if="$route.name == 'closet' || $route.name == 'outfits'"
+          v-bind:to="{ name: 'selection' }"
+          >Choose Outfit
+        </router-link>
+        <router-link
+          v-if="$route.name == 'closet' || $route.name == 'selection'"
+          v-bind:to="{ name: 'outfits' }"
+          >My Outfits
+        </router-link>
+        <button class="login">
+          <router-link
+            v-bind:to="{ name: 'login' }"
+            v-if="$store.state.token == ''"
+            >Login</router-link
+          >
+        </button>
+        <router-link
+          v-bind:to="{ name: 'logout' }"
+          v-if="$store.state.token != ''"
+          >Logout</router-link
+        >
       </nav>
+    </header>
   </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
-#nav {
+.header {
   display: flex;
-  flex-direction: column;
-
+  align-items: flex-end;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 100px;
+  background: transparent;
+  justify-content: right;
+  align-items: center;
+  z-index: 99;
 }
-#nav a{
-    padding: 15px 24px;
-    color: #EBEFD1;
-    border-radius: 8px;
-    font-family: sans-serif;
-    text-decoration: none;
-    font-size: 20px;
-
+.position {
+  display: flex;
+  margin-left: 0px;
+  
+}
+.logo {
+  display: flex;
+  align-items: flex-start;
+  border: none;
+  cursor: pointer;
+  width: 15%;
+  margin-left: 200px;
+  margin-bottom: 60px;
+}
+.header .login {
+  position: relative;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 19px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.header .login::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 58%;
+  height: 2px;
+  background: #fff;
+  opacity: 0.85;
+}
+#nav a {
+  color: #ebefd1;
+  border-radius: 8px;
+  font-family: sans-serif;
+  text-decoration: none;
+  font-size: 19px;
+  font-weight: 500;
+  margin-right: 40px;
 }
 #nav a:hover {
-  background-color: #EBEFD1;
-  color: #001E10;
+  background-color: #ebefd1;
+  color: #001e10;
 }
 </style>

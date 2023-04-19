@@ -1,11 +1,14 @@
-body {
-    background-color: #ebefd1; 
-    font-family: "Aleo", sans-serif;
- }
- .view-frame {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+ /* .view-frame {
   padding-top: 4%;
   padding-bottom: 2%;
- }
+ } */
 
  img {
      min-height: 50px;

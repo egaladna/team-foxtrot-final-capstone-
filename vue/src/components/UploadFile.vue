@@ -4,10 +4,7 @@
     <div v-if="showUpload" class="uploading-display">
       <div>
         <label for="category">Category:</label>
-        <select
-          id="category"
-          v-model="selectedType"
-        >
+        <select id="category" v-model="selectedType">
           <option v-for="type in types" v-bind:key="type" :value="type">
             {{ type }}
           </option>
@@ -28,6 +25,7 @@
 
 <script>
 import ClosetService from "@/services/ClosetService";
+
 export default {
   data() {
     return {
@@ -37,26 +35,29 @@ export default {
       showUpload: false,
     };
   },
-
   methods: {
     uploadFile() {
       console.log("My Name");
-      window.cloudinary
-        .createUploadWidget(
-          {
-            cloud_name: "dlnxljpbd",
-            upload_preset: "isitiv64",
-          },
-          (error, result) => {
-            if (!error && result && result.event === "success") {
-              this.urlsToUpload.push(result.info.secure_url);
-              console.log(this.urlsToUpload);
-            }
-            console.log("done with method: ");
-            console.log(this.urlsToUpload);
+      window.cloudinary.createUploadWidget(
+        {
+          cropping: true,
+          croppingAspectRatio: 3 / 4,
+          croppingDefaultSelectionRatio: 1,
+          croppingValidateDimensions: true,
+          croppingShowDimensions: false,
+          croppingCoordinatesMode: "custom",
+          croppingShowBackButton: true,
+          cloud_name: "dlnxljpbd",
+          upload_preset: "pyfnga5z",
+          resourceType: 'image'
+        },
+        (error, result) => {
+          if (!error && result && result.event === "success") {
+            this.urlsToUpload.push(result.info.secure_url);
           }
-        )
-        .open();
+          console.log(this.urlsToUpload);
+        }
+      ).open();
     },
     addClothesToDb() {
       let cloth = {
@@ -65,7 +66,6 @@ export default {
       };
       this.urlsToUpload.forEach((url) => {
         cloth.imgUrl = url;
-        console.log(cloth);
         ClosetService.addClothingItem(cloth)
           .then((response) => {
             if (response.status == 200) {
@@ -87,12 +87,15 @@ export default {
     },
   },
   created() {
-    ClosetService.getTypes().then(response => {
-      this.types = response.data;
-    }).catch(err => console.error(err));
-  }
+    ClosetService.getTypes()
+      .then((response) => {
+        this.types = response.data;
+      })
+      .catch((err) => console.error(err));
+  },
 };
 </script>
+
 
 <style>
 </style>
