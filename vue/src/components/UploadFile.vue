@@ -59,6 +59,7 @@ export default {
           console.log(this.urlsToUpload);
         }
       ).open();
+      
     },
     addClothesToDb() {
       let cloth = {
