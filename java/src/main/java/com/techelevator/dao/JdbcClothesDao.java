@@ -32,7 +32,7 @@ public class JdbcClothesDao implements ClothesDao{
     public List<ClothingItem> getClothesForUser(int userId) {
         List<ClothingItem> clothes = new ArrayList<>();
         String sql = "SELECT color, item_id, type, img_url, user_id FROM clothes " +
-                "WHERE user_id = ?;";
+                "WHERE user_id = ? ORDER BY item_id;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
 
         while (results.next()) {
@@ -72,6 +72,16 @@ public class JdbcClothesDao implements ClothesDao{
             types.add(results.getString("type"));
         }
         return types;
+    }
+
+    @Override
+    public List<String> listColors() {
+        List<String> colors = new ArrayList<>();
+        SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT color FROM item_color");
+        while(results.next()) {
+            colors.add(results.getString("color"));
+        }
+        return colors;
     }
 
     @Override

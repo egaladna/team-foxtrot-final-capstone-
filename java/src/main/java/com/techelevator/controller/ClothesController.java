@@ -57,4 +57,9 @@ public class ClothesController {
     public List<String> listTypes() {
         return clothesDao.listTypes();
     }
+
+    @RequestMapping(path = "/colors", method = RequestMethod.GET)
+    public List<String> listColors() {
+        return clothesDao.listColors();
+    }
 }

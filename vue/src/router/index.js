@@ -9,6 +9,7 @@ import Closet from '../views/Closet.vue'
 import Selection from '../views/Selection.vue'
 import Outfits from '../views/Outfits.vue'
 import Outfit from '../views/Outfit.vue'
+import PageNotFound from '../views/PageNotFound.vue'
 Vue.use(Router)
 
 /**
@@ -86,6 +87,15 @@ const router = new Router({
       component: Outfit,
       meta: {
         requiresAuth: true,
+  
+      }
+    },
+    {
+      path: '*',
+      name: 'pagenotfound',
+      component: PageNotFound,
+      meta: {
+        requiresAuth: false,
   
       }
     }

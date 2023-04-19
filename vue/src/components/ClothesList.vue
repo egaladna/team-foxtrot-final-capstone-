@@ -23,7 +23,9 @@ import ClosetService from "@/services/ClosetService";
 
 export default {
   data() {
-    return {};
+    return {
+        
+    };
   },
   components: {
     ClothingItem,
@@ -54,6 +56,7 @@ export default {
           .catch((err) => console.error(err));
       }
     },
+
   },
 
   computed: {

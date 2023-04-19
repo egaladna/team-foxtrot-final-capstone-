@@ -1,33 +1,12 @@
 <template>
   <div>
-    <button>
-      <ShareNetwork
-        network="facebook"
-        url="www.pinterest.com"
-        title="Look at my Foxtrot Closet outfit!"
-      >
-        Facebook
-      </ShareNetwork>
-    </button>
-    <button>
-      <ShareNetwork
-        network="twitter"
-        url="http://localhost:8080/myoutfits/"
-        title="Look at my Foxtrot Closet outfit!"
-      >
-        Twitter
-      </ShareNetwork>
-    </button>
-
-    <button>
+      
       <ShareNetwork
         network="pinterest"
-        url="http://localhost:8080/myoutfits/"
+        url="https://upload.wikimedia.org/wikipedia/en/thumb/e/e4/Daffy_Duck_2011.svg/145px-Daffy_Duck_2011.svg.png"
         title="Look at my Foxtrot Closet outfit!"
-      >
-        Pinterest
+      > <i class="fa fa-pinterest" style="font-size:48px;color:red"></i>
       </ShareNetwork>
-    </button>
   </div>
 </template>
 
@@ -36,4 +15,7 @@ export default {};
 </script>
 
 <style>
+a.share-network-pinterest{
+  text-decoration: none;
+}
 </style>
