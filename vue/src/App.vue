@@ -44,7 +44,8 @@ export default {
   align-items: center;
 }
 body {
-    background-color: #ebefd1; 
+  background: url("./assets/background2.png");
+    /* background-color: #ebefd1;  */
     font-family: "Aleo", sans-serif;
  }
 
@@ -66,7 +67,6 @@ body {
   grid-area: header;
   display: flex;
   justify-content: center;
-  background-color: #001e10;
 }
 img {
   display: block;
@@ -82,13 +82,12 @@ img {
   grid-area: l-nav;
   display: flex;
   justify-content: center;
-  background-color: #001e10;
   padding-top: 50px;
+  background-color: #f37333;
 }
 
 #r-nav {
   grid-area: r-nav;
-  background-color: #001e10;
  
 }
 
