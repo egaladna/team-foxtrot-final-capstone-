@@ -26,6 +26,7 @@
 <script>
 import ClosetService from "@/services/ClosetService";
 
+
 export default {
   data() {
     return {

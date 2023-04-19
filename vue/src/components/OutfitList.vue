@@ -28,14 +28,19 @@
               <img
                 :id="getImageId(outfit.outfitId, item.type)"
                 v-bind:src="item.imgUrl"
-                crossorigin="anonymous" 
+                crossorigin="anonymous"
               />
             </div>
 
-            
-            <button @click.prevent="getDataUrl(outfit)">Share This Outfit!</button>
+            <button @click.prevent="getDataUrl(outfit)">
+              Share This Outfit!
+            </button>
             <ShareButtons v-if="sharingOutfit" :outfitId="outfit.outfitId" />
-            <SendEmail v-if="sharingOutfit" :outfitId="outfit.outfitId" :canvasDataUrl="canvasDataUrl"  />
+            <SendEmail
+              v-if="sharingOutfit"
+              :outfitId="outfit.outfitId"
+              :canvasDataUrl="canvasDataUrl"
+            />
           </div>
         </div>
       </div>
@@ -58,8 +63,8 @@ export default {
     return {
       outfits: [],
       types: [],
-      canvasDataUrl: '',
-      sharingOutfit: false
+      canvasDataUrl: "",
+      sharingOutfit: false,
     };
   },
   computed: {
@@ -138,11 +143,10 @@ export default {
     getDataUrl(outfit) {
       this.sharingOutfit = true;
       let canvas = document.getElementById(this.getCanvasId(outfit.outfitId));
-      this.canvasDataUrl =  canvas.toDataURL("image/jpeg", 0.1);
+      this.canvasDataUrl = canvas.toDataURL("image/jpeg", 0.1);
       console.log(this.canvasDataUrl);
-      OutfitService.uploadToCloudinary(this.canvasDataUrl).then(imgUrl => console.log(imgUrl))
-  .catch(error => console.error(error));
-    }
+      
+    },
   },
   created() {
     this.getAllOutfits();
@@ -168,7 +172,7 @@ export default {
   align-items: center;
   justify-content: center;
 }
-canvas{
+canvas {
   width: 50vw;
 }
 img {
