@@ -37,7 +37,6 @@ export default {
   },
   methods: {
     uploadFile() {
-      console.log("My Name");
       window.cloudinary.createUploadWidget(
         {
           cropping: true,
