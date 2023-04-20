@@ -2,8 +2,7 @@
   <div id="whole-component">
     <div id="page-header">
       <h1>My Outfits</h1>
-      <ShareButtons />
-      <SendEmail />
+
     </div>
     <div class="all-outfits">
       <div v-for="outfit in validOutfits" v-bind:key="outfit.id">
@@ -18,7 +17,7 @@
           <div class="outfit-container">
             <canvas
               :id="getCanvasId(outfit.outfitId)"
-              :width="1200"
+              :width="600"
               :height="getHeight(outfit)"
               style="border: 1px solid #d3d3d3"
             >
@@ -32,14 +31,14 @@
               />
             </div>
 
-            <button @click.prevent="getDataUrl(outfit)">
+            <button @click.prevent="getCanvasImgUrl(outfit)">
               Share This Outfit!
             </button>
-            <ShareButtons v-if="sharingOutfit" :outfitId="outfit.outfitId" />
+            <ShareButtons v-if="sharingOutfit" :imgUrl="canvasImgUrl" />
             <SendEmail
               v-if="sharingOutfit"
               :outfitId="outfit.outfitId"
-              :canvasDataUrl="canvasDataUrl"
+              :canvasDataUrl="canvasImgUrl"
             />
           </div>
         </div>
@@ -53,6 +52,7 @@ import OutfitService from "../services/OutfitService";
 import ShareButtons from "../components/ShareButtons";
 import SendEmail from "../components/SendEmail";
 import ClosetService from "@/services/ClosetService";
+import CloudinaryService from "@/services/CloudinaryService";
 
 export default {
   components: {
@@ -63,8 +63,8 @@ export default {
     return {
       outfits: [],
       types: [],
-      canvasDataUrl: "",
-      sharingOutfit: false,
+      canvasImgUrl: "",
+      sharingOutfit: false
     };
   },
   computed: {
@@ -81,12 +81,18 @@ export default {
         .then((response) => {
           if (response.status === 200) {
             this.outfits = response.data;
+            ClosetService.getTypes()
+              .then((response) => {
+                this.types = response.data;
+                this.drawItemsToCanvas();
+              })
+              .catch((err) => console.error(err));
           }
         })
         .catch((err) => console.error(err));
     },
     getHeight(outfit) {
-      return outfit.itemList.length < 4 ? 800 : 1600;
+      return outfit.itemList.length < 4 ? 400 : 800;
     },
     getCanvasId(outfitId) {
       return outfitId + "outfitCanvas";
@@ -107,6 +113,7 @@ export default {
     drawItemsToCanvas() {
       console.log("in drawing method");
       this.validOutfits.forEach((outfit) => {
+        console.log(outfit);
         let c = document.getElementById(this.getCanvasId(outfit.outfitId));
         console.log(this.getCanvasId(outfit.outfitId));
         let ctx = c.getContext("2d");
@@ -120,48 +127,66 @@ export default {
             let imgId = this.getImageId(outfit.outfitId, type);
             console.log("drawing " + imgId);
             let img = document.getElementById(imgId);
-            console.log(img);
+            // const imgUrl = outfit.itemList.find(item => item.type == type).imgUrl;
+            // console.log('IMG URL:', imgUrl);
+            // let img = new Image();
+            // img.src = imgUrl;
+            // console.log('IMG', img);
 
             if (count == 1) {
-              x = 600;
+              x = 300;
             }
             if (count == 2) {
               x = 0;
-              y = 800;
+              y = 400;
             }
             if (count == 3) {
-              x = 600;
-              y = 800;
+              x = 300;
+              y = 400;
             }
-
-            ctx.drawImage(img, x, y, 600, 800);
+         
+          ctx.drawImage(img, x, y, 300, 400);
+           
+            
+            console.log("drawn");
             count++;
           }
         });
       });
     },
     getDataUrl(outfit) {
-      this.sharingOutfit = true;
       let canvas = document.getElementById(this.getCanvasId(outfit.outfitId));
-      this.canvasDataUrl = canvas.toDataURL("image/jpeg", 0.1);
-      console.log(this.canvasDataUrl);
-      
+      return canvas.toDataURL("image/jpeg");
+    },
+    getCanvasImgUrl(outfit) {
+      this.sharingOutfit = true;
+      const dataUri = this.getDataUrl(outfit);
+      const uniqueId = outfit.outfitId + "collage";
+      CloudinaryService.makeFromImgUrl(dataUri, uniqueId)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data.secure_url);
+          this.canvasImgUrl = data.secure_url;
+        })
+        .catch((err) => console.error(err));
     },
   },
   created() {
-    this.getAllOutfits();
+        this.getAllOutfits();
 
-    this.refreshCloset;
-    ClosetService.getTypes()
-      .then((response) => {
-        this.types = response.data;
-        this.drawItemsToCanvas();
-      })
-      .catch((err) => console.error(err));
   },
   mounted() {
-    this.drawItemsToCanvas();
+    
   },
+  // watch: {
+  //   loading: function(value) {
+  //     if (value) {
+        
+  //     } 
+  //   }
+  // }
 };
 </script>
 

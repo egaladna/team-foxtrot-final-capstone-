@@ -32,6 +32,7 @@ export default {
   },
 
   methods: {
+
     refreshCloset() {
       ClosetService.getClothingList()
         .then((response) => {
