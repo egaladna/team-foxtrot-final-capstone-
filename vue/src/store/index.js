@@ -22,7 +22,8 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     selectedItems: [],
-    myCloset: []
+    myCloset: [],
+    sharingItem: {}
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -56,6 +57,9 @@ export default new Vuex.Store({
     },
     UPDATE_CLOSET(state, clothesList) {
       state.myCloset = clothesList; 
+    },
+    UPDATE_SHARING_ITEM(state, outfit) {
+      state.sharingItem = outfit;
     }
   }
 })

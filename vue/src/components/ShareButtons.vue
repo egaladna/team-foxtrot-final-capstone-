@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="$store.state.sharingItem.outfitId == outfitId">
       
       <ShareNetwork
         network="pinterest"
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  props: ['imgUrl']
+  props: ['imgUrl', 'outfitId']
 };
 </script>
 
