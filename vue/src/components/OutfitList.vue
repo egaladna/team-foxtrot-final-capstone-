@@ -17,7 +17,7 @@
           <div class="outfit-container">
             <canvas
               :id="getCanvasId(outfit.outfitId)"
-              :width="600"
+              :width="300"
               :height="getHeight(outfit)"
               style="border: 1px solid #d3d3d3"
             >
@@ -92,7 +92,7 @@ export default {
         .catch((err) => console.error(err));
     },
     getHeight(outfit) {
-      return outfit.itemList.length < 4 ? 400 : 800;
+      return outfit.itemList.length < 4 ? 200 : 400;
     },
     getCanvasId(outfitId) {
       return outfitId + "outfitCanvas";
@@ -134,18 +134,18 @@ export default {
             // console.log('IMG', img);
 
             if (count == 1) {
-              x = 300;
+              x = 150;
             }
             if (count == 2) {
               x = 0;
-              y = 400;
+              y = 200;
             }
             if (count == 3) {
-              x = 300;
-              y = 400;
+              x = 150;
+              y = 200;
             }
          
-          ctx.drawImage(img, x, y, 300, 400);
+          ctx.drawImage(img, x, y, 150, 200);
            
             
             console.log("drawn");
@@ -198,7 +198,7 @@ export default {
   justify-content: center;
 }
 canvas {
-  width: 50vw;
+  width: 10vw;
 }
 img {
   margin: 3px;
