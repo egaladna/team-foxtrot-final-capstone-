@@ -1,9 +1,6 @@
 <template>
   <div id="whole-component">
-    <div id="page-header">
-      <h1>My Outfits</h1>
-
-    </div>
+    <h1>My Outfits</h1>
     <div class="all-outfits">
       <div v-for="outfit in validOutfits" v-bind:key="outfit.id">
         <div
@@ -64,7 +61,7 @@ export default {
       outfits: [],
       types: [],
       canvasImgUrl: "",
-      sharingOutfit: false
+      sharingOutfit: false,
     };
   },
   computed: {
@@ -144,10 +141,9 @@ export default {
               x = 150;
               y = 200;
             }
-         
-          ctx.drawImage(img, x, y, 150, 200);
-           
-            
+
+            ctx.drawImage(img, x, y, 150, 200);
+
             console.log("drawn");
             count++;
           }
@@ -174,17 +170,14 @@ export default {
     },
   },
   created() {
-        this.getAllOutfits();
-
+    this.getAllOutfits();
   },
-  mounted() {
-    
-  },
+  mounted() {},
   // watch: {
   //   loading: function(value) {
   //     if (value) {
-        
-  //     } 
+
+  //     }
   //   }
   // }
 };
@@ -192,14 +185,28 @@ export default {
 
 <style scoped>
 #whole-component {
-  display: flex;
+    display: flex;
   flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 120px;
+  bottom: 30px;
+  left: 140px;
+  right: 140px;
+  border-radius: 25px;
   align-items: center;
   justify-content: center;
+  box-shadow: -1px 0 15px black;
+  border-radius: 120px;
+  backdrop-filter: blur(15px);
+  border: 2px solid black;
+  overflow: auto;
 }
+
 canvas {
   width: 10vw;
 }
+
 img {
   margin: 3px;
   display: none;
@@ -212,19 +219,25 @@ img {
   border-radius: 8px;
   width: fit-content;
   block-size: fit-content;
-  display: flex;
   flex-wrap: wrap;
+  margin-top: 100px;
 }
 .all-outfits {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-#page-header {
+
+h1 {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  margin-top: 30px;
+  z-index: 100;
+  color: #f68a3f;
+  text-shadow: 3px 2px 2px black;
+  font-family: "Junge";
+  font-size: 50px;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
 }
 </style>
