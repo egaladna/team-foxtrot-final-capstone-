@@ -8,7 +8,7 @@
     <div v-if="showUpload" class="uploading-display">
       <div>
         <div class="instruction">
-          <p>Step One: select a category (dont worry this can change later)</p>
+          <!-- instructions here possibly -->
         </div>
         <label for="category">Category:</label>
         <select id="category" v-model="selectedType">
