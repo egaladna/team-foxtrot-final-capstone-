@@ -2,54 +2,54 @@
   <div class="container">
     <img class="clothing-image" v-bind:src="cloth.imgUrl" />
     <div class="icons">
-    <i
-      class="fa fa-edit"
-      title="Update Item"
-      style="font-size: 20px"
-      v-on:click.prevent="showItemEditor = true"
-    ></i>
-    
-    <i
-          class="fa fa-trash-o"
-          title="Delete"
-          style="font-style: 24px"
-          v-on:click.prevent="deleteClothingItem(cloth.id)"
-        ></i>
-        </div>
-    <div id="itemEdit" v-if="showItemEditor">
-      <div id="typeSelector">
-        <div class="item-type">
-          Item Type:
-          <select id="category" v-model="updatedType">
-            <option v-for="type in types" v-bind:key="type" :value="type">
-              {{ type }}
-            </option>
-          </select>
-        </div>
-        <div class="item-color">
-        Item Color:
-        <select id="category" v-model="updatedColor">
-          <option v-for="color in colors" v-bind:key="color" :value="color">
-            {{ color }}
-          </option>
-        </select>
-        </div>
-      </div>
-      <div class="save">
       <i
-        class="fa fa-save"
-        title="Save Changes"
-        style="font-size: 24px"
-        @click.prevent="updateClothingItem"
-        ></i>
-      <div class="cancel">
+        class="fa fa-edit"
+        title="Update Item"
+        style="font-size: 20px"
+        v-on:click.prevent="showItemEditor = true"
+      ></i>
+
       <i
-        class="fa fa-window-close-o"
-        title="Exit Changes"
-        style="font-size: 24px"
-        @click.prevent="cancelUpdate"
-        ></i>
-    </div>
+        class="fa fa-trash-o"
+        title="Delete"
+        style="font-style: 24px"
+        v-on:click.prevent="deleteClothingItem(cloth.id)"
+      ></i>
+      <div id="itemEdit" v-if="showItemEditor">
+        <div id="typeSelector">
+          <div class="item-type">
+            Item Type:
+            <select id="category" v-model="updatedType">
+              <option v-for="type in types" v-bind:key="type" :value="type">
+                {{ type }}
+              </option>
+            </select>
+          </div>
+          <div class="item-color">
+            Item Color:
+            <select id="category" v-model="updatedColor">
+              <option v-for="color in colors" v-bind:key="color" :value="color">
+                {{ color }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="save">
+          <i
+            class="fa fa-save"
+            title="Save Changes"
+            style="font-size: 24px"
+            @click.prevent="updateClothingItem"
+          ></i>
+          <div class="cancel">
+            <i
+              class="fa fa-window-close-o"
+              title="Exit Changes"
+              style="font-size: 24px"
+              @click.prevent="cancelUpdate"
+            ></i>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -71,7 +71,7 @@ export default {
   name: "clothing-item",
   props: ["cloth"],
   methods: {
-     refreshCloset() {
+    refreshCloset() {
       ClosetService.getClothingList()
         .then((response) => {
           this.$store.commit("UPDATE_CLOSET", response.data);
@@ -105,7 +105,7 @@ export default {
         ClosetService.deleteClothingItem(itemId)
           .then((response) => {
             if (response.status == 200) {
-             this.refreshCloset();
+              this.refreshCloset();
             }
           })
           .catch((err) => console.error(err));
@@ -129,34 +129,32 @@ export default {
 </script>
 
 <style scoped>
-#itemEdit{
+#itemEdit {
   display: flex;
+  flex-wrap: wrap;
   position: absolute;
   border: 1px solid black;
-  background-color: #EBEFD1;
-  z-index: 100;
+  background-color: #ebefd1;
+  z-index: 98;
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   height: 30px;
 }
 
-
-.clothing-image{
+.clothing-image {
   width: 150px;
   height: 200px;
-  
-
 }
 .container {
   padding-left: 20px;
   padding-right: 20px;
 }
-.item-type{
+.item-type {
   display: flex;
   flex-direction: column;
 }
-.item-color{
+.item-color {
   display: flex;
   flex-direction: column;
 }

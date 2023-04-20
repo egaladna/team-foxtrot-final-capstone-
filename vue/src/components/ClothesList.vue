@@ -82,8 +82,7 @@ export default {
   box-shadow: -1px 0 15px black;
   border: 2px solid rgba(255, 255, 255, 0.1);
   border-radius: 120px;
-  backdrop-filter: blur(15px);
-  
+  backdrop-filter: blur(15px); 
 }
 
 #clothingList-closet h1{
@@ -117,7 +116,6 @@ export default {
   border-left: none;
   padding-top: 30px;
   border-radius: 55px;
-
   overflow: auto;
 }
 

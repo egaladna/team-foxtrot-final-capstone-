@@ -1,46 +1,50 @@
 <template>
-<section class="clear-wrapper">
-  <div id="whole-selector-page">
-    <div
-      id="selector-area"
-      @drop="onDeselectDrop($event)"
-      @dragover.prevent
-      @dragenter.prevent
-    >
-      <div class="each-type" v-for="type in types" :key="type.id">
-        <p>{{ type }}</p>
-        <div id="all-images-for-type">
-          <div
-            v-for="cloth in getItemsForType(type)"
-            :key="cloth.id"
-            id="each-image"
-            draggable
-            @dragstart="startDrag($event, cloth.id)"
-          >
-            <img :src="cloth.imgUrl" alt="" />
+  <article>
+    <section class="clear-wrapper">
+      <div id="whole-selector-page">
+        <div
+          id="selector-area"
+          @drop="onDeselectDrop($event)"
+          @dragover.prevent
+          @dragenter.prevent
+        >
+          <div class="each-type" v-for="type in types" :key="type.id">
+            <p>{{ type }}</p>
+            <div id="all-images-for-type">
+              <div
+                v-for="cloth in getItemsForType(type)"
+                :key="cloth.id"
+                id="each-image"
+                draggable
+                @dragstart="startDrag($event, cloth.id)"
+              >
+                <img :src="cloth.imgUrl" alt="" />
+              </div>
+            </div>
+            <i
+              class="fa fa-random"
+              aria-hidden="true"
+              style="font-size: 24px"
+              v-if="getItemsForType(type).length > 1"
+              @click="randomGeneratorForType(type)"
+            ></i>
           </div>
         </div>
-        <button v-if="getItemsForType(type).length > 1" 
-          @click="randomGeneratorForType(type)">
-          Randomize {{ type }}
-        </button>
       </div>
-    </div>
-   
+    </section>
     <div
       id="selected-items-area"
       @drop="onSelectDrop($event)"
       @dragover.prevent
       @dragenter.prevent
     >
+      <p>Mix & Match</p>
       <!-- <p>Selected Items:</p>
       <div v-for="item in selectedItems" :key="item.id" id="each-selected-item"
       draggable
       @dragstart="startDrag($event, item.id)">
         <img :src="item.imgUrl" alt="">
       </div> -->
-
-      <p>Mix & Match</p>
       <div
         class="selectedItemsDiv"
         v-for="type in types"
@@ -56,10 +60,14 @@
         style="font-size: 24px"
         v-on:click.prevent="saveOutfits"
       ></i>
-      <button @click="randomGeneratorAll">Randomize Outfit</button>
+      <i
+        class="fa fa-random"
+        aria-hidden="true"
+        style="font-size: 24px"
+        @click="randomGeneratorAll"
+      ></i>
     </div>
-  </div>
-  </section>
+  </article>
 </template>
 
 <script>
@@ -116,23 +124,23 @@ export default {
       this.$store.commit("CLEAR_SELECTION");
     },
     randomGeneratorAll() {
-
-
       this.types.forEach((type) => {
-          this.randomGeneratorForType(type);
+        this.randomGeneratorForType(type);
       });
-          const topBottomOrFull = Math.floor(Math.random() * 2);
-          const selectedTop = this.selectedItems.find(item => item.type=='TOP');
-          const selectedBottom = this.selectedItems.find(item => item.type=='BOTTOM');
-          const selectedFullBody = this.selectedItems.find(item => item.type=='FULLBODY');
-          if(topBottomOrFull == 1) {
-            this.deselectItem(selectedTop);
-            this.deselectItem(selectedBottom);
-          }
-          else {
-            this.deselectItem(selectedFullBody);
-          }
-
+      const topBottomOrFull = Math.floor(Math.random() * 2);
+      const selectedTop = this.selectedItems.find((item) => item.type == "TOP");
+      const selectedBottom = this.selectedItems.find(
+        (item) => item.type == "BOTTOM"
+      );
+      const selectedFullBody = this.selectedItems.find(
+        (item) => item.type == "FULLBODY"
+      );
+      if (topBottomOrFull == 1) {
+        this.deselectItem(selectedTop);
+        this.deselectItem(selectedBottom);
+      } else {
+        this.deselectItem(selectedFullBody);
+      }
     },
     randomGeneratorForType(type) {
       let allClothesOfType = this.getItemsForType(type);
@@ -184,50 +192,51 @@ export default {
 };
 </script>
 
-<style>
-.clear-wrapper{
+<style scoped>
+.clear-wrapper {
   display: flex;
-  justify-content: center ;
-  position: absolute;
-  top: 120px;
-  bottom: 30px;
-  left: 140px;
-  right: 140px;
+  margin-top: 20%;
+  margin-left: 20%;
   box-shadow: -1px 0 10px rgba(0, 0, 0, 0.6);
   border: 2px solid rgba(255, 255, 255, 0.1);
-  border-radius: 25px;
+  border-radius: 100px;
   backdrop-filter: blur(15px);
-  overflow: auto;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
 }
-.each-type p{
+.each-type p {
   font-size: 25px;
-  color: #1b3536;
+  color: black;
   padding-bottom: 20px;
   padding-top: 20px;
   font-weight: 600px;
-
 }
-.each-type p:hover{
+.each-type p:hover {
   color: #1b3536;
   cursor: copy;
 }
-#selector-area{
+#selector-area {
   padding-right: 200px;
-
 }
 #whole-selector-page {
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  max-width: 800px; 
+  max-width: 800px;
 }
 #all-images-for-type {
   display: flex;
   flex-wrap: wrap;
 }
 #selected-items-area {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
   border: solid #1b3536;
   border-radius: 8px;
+  margin-right: 20%;
+  margin-left: 20%;
   padding-left: 5%;
   padding-right: 5%;
   overflow: auto;
@@ -236,16 +245,22 @@ export default {
   backdrop-filter: blur(20px);
   top: 90px;
   border-radius: 25px;
-  
+  transform: translate(175%, -1150%);
 }
-#selected-items-area p{
+#selected-items-area p {
   font-size: 25px;
-  color: #EBEFD1;
+  color: black;
   padding-bottom: 20px;
   padding-top: 20px;
 }
 #selected-items-area p:hover {
   color: #1b3536;
   cursor: copy;
+}
+
+img {
+  width: 125px;
+  height: 155px;
+  margin: 3px;
 }
 </style>
