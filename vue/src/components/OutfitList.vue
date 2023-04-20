@@ -34,12 +34,14 @@
             <button @click.prevent="getCanvasImgUrl(outfit)">
               Share This Outfit!
             </button>
-            <ShareButtons v-if="sharingOutfit" :imgUrl="canvasImgUrl" />
+            <div >
+            <ShareButtons :imgUrl="canvasImgUrl"
+            :outfitId="outfit.outfitId" />
             <SendEmail
-              v-if="sharingOutfit"
               :outfitId="outfit.outfitId"
               :canvasDataUrl="canvasImgUrl"
             />
+            </div>
           </div>
         </div>
       </div>
@@ -64,7 +66,7 @@ export default {
       outfits: [],
       types: [],
       canvasImgUrl: "",
-      sharingOutfit: false
+      selectedOutfit: {}
     };
   },
   computed: {
@@ -76,6 +78,7 @@ export default {
   },
 
   methods: {
+    
     getAllOutfits() {
       OutfitService.getOutfits()
         .then((response) => {
@@ -159,7 +162,8 @@ export default {
       return canvas.toDataURL("image/jpeg");
     },
     getCanvasImgUrl(outfit) {
-      this.sharingOutfit = true;
+     this.$store.commit('UPDATE_SHARING_ITEM', outfit);
+
       const dataUri = this.getDataUrl(outfit);
       const uniqueId = outfit.outfitId + "collage";
       CloudinaryService.makeFromImgUrl(dataUri, uniqueId)

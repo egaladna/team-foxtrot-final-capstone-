@@ -1,4 +1,5 @@
 <template>
+<div v-if="$store.state.sharingItem.outfitId == outfitId">
   <form ref="form" @submit.prevent="sendEmail">
     <label>Email</label>
     <input v-model="user_email" type="email" name="to_email" />
@@ -9,6 +10,7 @@
         v-on:click.prevent="sendEmail"
       ></i>
   </form>
+  </div>
 </template>
 
 <script>
