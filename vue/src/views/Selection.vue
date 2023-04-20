@@ -1,26 +1,15 @@
 <template>
   <div id="main-selection" class="view-frame">
-      <!-- <div id="item-chooser">
-           <ItemChooser />
-      </div>
-     
-      <div id="selected-items">
-          <SelectedItems />
-      </div> -->
       <OutfitSelector />
       
   </div>
 </template>
 
 <script>
-// import ItemChooser from '@/components/ItemChooser'
-// import SelectedItems from '../components/SelectedItems.vue'
 import OutfitSelector from '@/components/OutfitSelector'
 
 export default {
     components: {
-        // ItemChooser,
-        // SelectedItems,
         OutfitSelector,
     }
 }

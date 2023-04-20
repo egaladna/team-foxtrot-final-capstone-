@@ -1,10 +1,6 @@
 <template>
   <div id="whole-component">
-    <div id="page-header">
-      <h1>My Outfits</h1>
-      <ShareButtons />
-      <SendEmail />
-    </div>
+    <h1>My Outfits</h1>
     <div class="all-outfits">
       <div v-for="outfit in validOutfits" v-bind:key="outfit.id">
         <div
@@ -18,7 +14,7 @@
           <div class="outfit-container">
             <canvas
               :id="getCanvasId(outfit.outfitId)"
-              :width="1200"
+              :width="300"
               :height="getHeight(outfit)"
               style="border: 1px solid #d3d3d3"
             >
@@ -32,15 +28,17 @@
               />
             </div>
 
-            <button @click.prevent="getDataUrl(outfit)">
+            <button @click.prevent="getCanvasImgUrl(outfit)">
               Share This Outfit!
             </button>
-            <ShareButtons v-if="sharingOutfit" :outfitId="outfit.outfitId" />
+            <div >
+            <ShareButtons :imgUrl="canvasImgUrl"
+            :outfitId="outfit.outfitId" />
             <SendEmail
-              v-if="sharingOutfit"
               :outfitId="outfit.outfitId"
-              :canvasDataUrl="canvasDataUrl"
+              :canvasDataUrl="canvasImgUrl"
             />
+            </div>
           </div>
         </div>
       </div>
@@ -53,6 +51,7 @@ import OutfitService from "../services/OutfitService";
 import ShareButtons from "../components/ShareButtons";
 import SendEmail from "../components/SendEmail";
 import ClosetService from "@/services/ClosetService";
+import CloudinaryService from "@/services/CloudinaryService";
 
 export default {
   components: {
@@ -63,8 +62,8 @@ export default {
     return {
       outfits: [],
       types: [],
-      canvasDataUrl: "",
-      sharingOutfit: false,
+      canvasImgUrl: "",
+      selectedOutfit: {}
     };
   },
   computed: {
@@ -76,17 +75,24 @@ export default {
   },
 
   methods: {
+    
     getAllOutfits() {
       OutfitService.getOutfits()
         .then((response) => {
           if (response.status === 200) {
             this.outfits = response.data;
+            ClosetService.getTypes()
+              .then((response) => {
+                this.types = response.data;
+                this.drawItemsToCanvas();
+              })
+              .catch((err) => console.error(err));
           }
         })
         .catch((err) => console.error(err));
     },
     getHeight(outfit) {
-      return outfit.itemList.length < 4 ? 800 : 1600;
+      return outfit.itemList.length < 4 ? 200 : 400;
     },
     getCanvasId(outfitId) {
       return outfitId + "outfitCanvas";
@@ -107,6 +113,7 @@ export default {
     drawItemsToCanvas() {
       console.log("in drawing method");
       this.validOutfits.forEach((outfit) => {
+        console.log(outfit);
         let c = document.getElementById(this.getCanvasId(outfit.outfitId));
         console.log(this.getCanvasId(outfit.outfitId));
         let ctx = c.getContext("2d");
@@ -120,61 +127,90 @@ export default {
             let imgId = this.getImageId(outfit.outfitId, type);
             console.log("drawing " + imgId);
             let img = document.getElementById(imgId);
-            console.log(img);
+            // const imgUrl = outfit.itemList.find(item => item.type == type).imgUrl;
+            // console.log('IMG URL:', imgUrl);
+            // let img = new Image();
+            // img.src = imgUrl;
+            // console.log('IMG', img);
 
             if (count == 1) {
-              x = 600;
+              x = 150;
             }
             if (count == 2) {
               x = 0;
-              y = 800;
+              y = 200;
             }
             if (count == 3) {
-              x = 600;
-              y = 800;
+              x = 150;
+              y = 200;
             }
 
-            ctx.drawImage(img, x, y, 600, 800);
+            ctx.drawImage(img, x, y, 150, 200);
+
+            console.log("drawn");
             count++;
           }
         });
       });
     },
     getDataUrl(outfit) {
-      this.sharingOutfit = true;
       let canvas = document.getElementById(this.getCanvasId(outfit.outfitId));
-      this.canvasDataUrl = canvas.toDataURL("image/jpeg", 0.1);
-      console.log(this.canvasDataUrl);
-      
+      return canvas.toDataURL("image/jpeg");
+    },
+    getCanvasImgUrl(outfit) {
+     this.$store.commit('UPDATE_SHARING_ITEM', outfit);
+
+      const dataUri = this.getDataUrl(outfit);
+      const uniqueId = outfit.outfitId + "collage";
+      CloudinaryService.makeFromImgUrl(dataUri, uniqueId)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data.secure_url);
+          this.canvasImgUrl = data.secure_url;
+        })
+        .catch((err) => console.error(err));
     },
   },
   created() {
     this.getAllOutfits();
+  },
+  mounted() {},
+  // watch: {
+  //   loading: function(value) {
+  //     if (value) {
 
-    this.refreshCloset;
-    ClosetService.getTypes()
-      .then((response) => {
-        this.types = response.data;
-        this.drawItemsToCanvas();
-      })
-      .catch((err) => console.error(err));
-  },
-  mounted() {
-    this.drawItemsToCanvas();
-  },
+  //     }
+  //   }
+  // }
 };
 </script>
 
 <style scoped>
 #whole-component {
-  display: flex;
+    display: flex;
   flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 120px;
+  bottom: 30px;
+  left: 140px;
+  right: 140px;
+  border-radius: 25px;
   align-items: center;
   justify-content: center;
+  box-shadow: -1px 0 15px black;
+  border-radius: 120px;
+  backdrop-filter: blur(15px);
+  border: 2px solid black;
+  overflow: auto;
 }
+
 canvas {
-  width: 50vw;
+  width: 10vw;
 }
+
 img {
   margin: 3px;
   display: none;
@@ -187,19 +223,25 @@ img {
   border-radius: 8px;
   width: fit-content;
   block-size: fit-content;
-  display: flex;
   flex-wrap: wrap;
+  margin-top: 100px;
 }
 .all-outfits {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-#page-header {
+
+h1 {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  margin-top: 30px;
+  z-index: 100;
+  color: #f68a3f;
+  text-shadow: 3px 2px 2px black;
+  font-family: "Junge";
+  font-size: 50px;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
 }
 </style>

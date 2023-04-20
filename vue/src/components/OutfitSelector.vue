@@ -20,10 +20,13 @@
             <img :src="cloth.imgUrl" alt="" />
           </div>
         </div>
-        <button v-if="getItemsForType(type).length > 1" 
-          @click="randomGeneratorForType(type)">
-          Randomize {{ type }}
-        </button>
+            <i
+              class="fa fa-random"
+              aria-hidden="true"
+              style="font-size: 24px"
+              v-if="getItemsForType(type).length > 1"
+              @click="randomGeneratorForType(type)"
+            ></i>
       </div>
     </div>
    
@@ -56,7 +59,12 @@
         style="font-size: 24px"
         v-on:click.prevent="saveOutfits"
       ></i>
-      <button @click="randomGeneratorAll">Randomize Outfit</button>
+       <i
+        class="fa fa-random"
+        aria-hidden="true"
+        style="font-size: 24px"
+        @click="randomGeneratorAll"
+      ></i>
     </div>
   </div>
   </section>
@@ -184,7 +192,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .clear-wrapper{
   display: flex;
   justify-content: center ;
@@ -197,11 +205,11 @@ export default {
   border: 2px solid rgba(255, 255, 255, 0.1);
   border-radius: 25px;
   backdrop-filter: blur(15px);
-  overflow: auto;
 }
+
 .each-type p{
   font-size: 25px;
-  color: #1b3536;
+  color: black;
   padding-bottom: 20px;
   padding-top: 20px;
   font-weight: 600px;
@@ -213,6 +221,7 @@ export default {
 }
 #selector-area{
   padding-right: 200px;
+  overflow: auto;
 
 }
 #whole-selector-page {
@@ -240,12 +249,18 @@ export default {
 }
 #selected-items-area p{
   font-size: 25px;
-  color: #EBEFD1;
+  color: black;
   padding-bottom: 20px;
   padding-top: 20px;
 }
 #selected-items-area p:hover {
   color: #1b3536;
   cursor: copy;
+}
+
+img{
+  width: 125px;
+  height: 155px;
+  margin: 3px;
 }
 </style>
