@@ -1,16 +1,11 @@
 <template>
 <section class="wrappers">
   <div id="clothingList-closet">
-    <h1>My Closet</h1>
+    <h1>MY CLOSET</h1>
     <div id="clothingList-clothing-items">
       <div v-for="cloth in displayedClothes" v-bind:key="cloth.id">
         <ClothingItem v-bind:cloth="cloth" />
-        <i
-          class="fa fa-trash-o"
-          title="Delete"
-          style="font-style: 24px"
-          v-on:click.prevent="deleteClothingItem(cloth.id)"
-        ></i>
+        
       </div>
     </div>
     <UploadFile />
@@ -84,20 +79,29 @@ export default {
   bottom: 100px;
   left: 350px;
   right: 350px;
-  box-shadow: -1px 0 10px rgba(0, 0, 0, 0.6);
+  box-shadow: -1px 0 15px black;
   border: 2px solid rgba(255, 255, 255, 0.1);
-  border-radius: 25px;
-  backdrop-filter: blur(10px);
-  overflow: auto;
+  border-radius: 120px;
+  backdrop-filter: blur(15px);
+  
 }
+
 #clothingList-closet h1{
   display: flex;
   justify-content: center;
   margin-top: 30px;
   z-index: 100;
-  color: #EBEFD1;
-  font-size: 30px;
+  color: #f68a3f;
+  text-shadow: 3px 2px 2px black;
+  font-family: 'Junge';
+  font-size: 50px;
+  letter-spacing: 2px;
+  margin-bottom: 20px;;
   
+}
+
+#clothingList-closet {
+  margin-bottom: 20px;
 }
 
 
@@ -106,8 +110,15 @@ export default {
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: baseline;
-  margin-top: 50px;
-  
+  margin-bottom: 40px;
+  border: 1px solid black;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  padding-top: 30px;
+  border-radius: 55px;
+
+  overflow: auto;
 }
 
 </style>

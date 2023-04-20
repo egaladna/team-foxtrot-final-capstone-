@@ -1,8 +1,15 @@
 <template>
   <div>
-    <button v-if="!showUpload" @click="showUpload = true">Add Clothes</button>
+    <div  v-if="!showUpload" @click="showUpload = true" class="icon">
+      
+    <box-icon name='closet' animation='tada' ></box-icon>
+    <p>ADD CLOTHES TO YOUR CLOSET</p>
+    </div>
     <div v-if="showUpload" class="uploading-display">
       <div>
+        <div class="instruction">
+          <p>Step One: select a category (dont worry this can change later)</p>
+        </div>
         <label for="category">Category:</label>
         <select id="category" v-model="selectedType">
           <option v-for="type in types" v-bind:key="type" :value="type">
@@ -10,14 +17,14 @@
           </option>
         </select>
       </div>
-
-      <button @click="uploadFile">Select Files</button>
+      <button  class="file" @click="uploadFile" style="font-size:24px">Select Files <i class="fa fa-upload"></i></button>
       <div v-if="urlsToUpload.length != 0" id="pendingimages">
         <div>
           <img v-for="url in urlsToUpload" :key="url.id" v-bind:src="url" />
         </div>
-        <button @click.prevent="addClothesToDb">Add to Closet</button>
-        <button @click.prevent="cancelAdd">Cancel</button>
+
+         <i class ="fa fa-plus" style="font-size:24px" title="Add to Closet" @click.prevent="addClothesToDb"></i>
+         <i class ="fa fa-times" style="font-size:24px" title="Cancel" @click.prevent="cancelAdd"></i>
       </div>
     </div>
   </div>
@@ -98,5 +105,35 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
+  box-shadow: -1px 0 12px black;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  border-left: -100px;
+  border-right: -100px;  
+}
+.icon p{
+  font-family: 'Junge';
+  font-weight: 900;
+  
+}
+img {
+  width: 150px;
+  height: 200px;
+}
+
+.file {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ color: black;
+}
+
 </style>
