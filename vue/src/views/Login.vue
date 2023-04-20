@@ -74,7 +74,7 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
-            this.$router.push("/");
+            this.$router.push("/mycloset");
           }
         })
         .catch((error) => {
@@ -103,7 +103,6 @@ export default {
   justify-content: center;
   align-items: center;
   border: none;
-  
 }
 .image {
   display: flex;
@@ -113,7 +112,6 @@ export default {
   align-items: center;
   margin-top: 80px;
   margin-right: 200px;
-  
 }
 .form-input-group {
   margin-bottom: 1rem;
@@ -142,7 +140,7 @@ label {
 .title {
   font-size: 32px;
   text-align: center;
-  color: #EBEFD1;
+  color: #ebefd1;
   margin-bottom: 40px;
 }
 .form-input-group {
@@ -150,7 +148,7 @@ label {
   width: 100%;
   height: 50px;
   margin: 30px 0;
-  border-bottom: 2px solid #EBEFD1;
+  border-bottom: 2px solid #ebefd1;
 }
 
 .form-input-group input {
@@ -169,7 +167,7 @@ label {
   left: 0;
   transform: translateY(-50%);
   font-size: 16px;
-  color: #EBEFD1;
+  color: #ebefd1;
   font-weight: 500;
   pointer-events: none;
   transition: 0.5s;
