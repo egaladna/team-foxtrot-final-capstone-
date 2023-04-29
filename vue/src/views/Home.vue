@@ -37,29 +37,7 @@ export default {
 };
 </script>
 <style scoped>
-/* .view-frame {
-  display: flex;
-  padding-top: 50vh;
-  justify-content: center;
-}
 
-h1 {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  color: #3B3355;
-  font-family: sans-serif;
-}
-
-
- p {
-  display: flex;
-  text-align: center;
-} */
-
-/* Reset default margin and padding */
 
 .view-frame {
   display: flex;
@@ -105,7 +83,7 @@ p {
   margin-bottom: 1rem;
 }
 
-/* Set email container width and center it */
+
 .home-container {
   max-width: 600px;
   margin-bottom: 10px;
@@ -117,7 +95,7 @@ p {
   box-shadow: -10px -15px 10px black;
 }
 
-/* Set box styling */
+
 .box {
   margin: 20px;
   padding: 20px;
@@ -135,4 +113,4 @@ p {
 }
 </style>
 
-<!-- </style> -->
+

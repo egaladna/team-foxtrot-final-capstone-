@@ -1,8 +1,6 @@
-// import axios from 'axios';
 
-// const http = axios.create();
 const api_key = '417594917384528';
-// const api_secret = 'xA1HLpa3CL231w3X9iD7U8wtL00';
+
 
 
 export default {

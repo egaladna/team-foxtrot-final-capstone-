@@ -28,7 +28,7 @@ export default {
   components: {
     ClothingItem,
     UploadFile
-    //UploadWidget
+
   },
 
   methods: {

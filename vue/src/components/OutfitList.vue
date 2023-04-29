@@ -104,35 +104,22 @@ export default {
       let containsType = false;
       outfit.itemList.forEach((item) => {
         if (item.type == type) {
-          console.log(outfit.outfitId + " John Said " + type);
           containsType = true;
         }
       });
       return containsType;
     },
     drawItemsToCanvas() {
-      console.log("in drawing method");
       this.validOutfits.forEach((outfit) => {
-        console.log(outfit);
         let c = document.getElementById(this.getCanvasId(outfit.outfitId));
-        console.log(this.getCanvasId(outfit.outfitId));
         let ctx = c.getContext("2d");
         let x = 0;
         let y = 0;
         let count = 0;
         this.types.forEach((type) => {
-          console.log("for each type");
-          console.log(this.outfitContainsType(outfit, type));
           if (this.outfitContainsType(outfit, type)) {
             let imgId = this.getImageId(outfit.outfitId, type);
-            console.log("drawing " + imgId);
             let img = document.getElementById(imgId);
-            // const imgUrl = outfit.itemList.find(item => item.type == type).imgUrl;
-            // console.log('IMG URL:', imgUrl);
-            // let img = new Image();
-            // img.src = imgUrl;
-            // console.log('IMG', img);
-
             if (count == 1) {
               x = 150;
             }
@@ -146,8 +133,6 @@ export default {
             }
 
             ctx.drawImage(img, x, y, 150, 200);
-
-            console.log("drawn");
             count++;
           }
         });
@@ -175,15 +160,7 @@ export default {
   },
   created() {
     this.getAllOutfits();
-  },
-  mounted() {},
-  // watch: {
-  //   loading: function(value) {
-  //     if (value) {
-
-  //     }
-  //   }
-  // }
+  }
 };
 </script>
 

@@ -90,14 +90,7 @@ export default {
 </script>
 
 <style >
-/* #login {
-  padding-top: 400px;
-  padding-bottom: 400px;
-  background: url("../assets/background2.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-} */
+
 .center-image {
   display: flex;
   justify-content: center;

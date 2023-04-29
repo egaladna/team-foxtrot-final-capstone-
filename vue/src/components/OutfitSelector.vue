@@ -36,12 +36,7 @@
       @dragover.prevent
       @dragenter.prevent
     >
-      <!-- <p>Selected Items:</p>
-      <div v-for="item in selectedItems" :key="item.id" id="each-selected-item"
-      draggable
-      @dragstart="startDrag($event, item.id)">
-        <img :src="item.imgUrl" alt="">
-      </div> -->
+   
 
       <p>Mix & Match</p>
       <div

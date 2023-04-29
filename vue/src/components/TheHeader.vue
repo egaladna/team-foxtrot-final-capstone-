@@ -65,8 +65,6 @@ export default {};
   cursor: pointer;
   justify-content: stretch;
   width: 100px;
-  /* margin-left: 200px;
-  margin-bottom: 60px; */
 }
 .header .login {
   position: relative;
